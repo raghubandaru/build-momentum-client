@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { lazy } from 'react'
+
+import { useUser } from './shared/context/User'
+
+const UnAuthenticated = lazy(() => import('./unauthenticated'))
+const Authenticated = lazy(() => import('./authenticated'))
 
 function App() {
-  return (
-    <div>
-      <h1>Build Momentum</h1>
-    </div>
-  )
+  const { user } = useUser()
+
+  if (user) {
+    return <Authenticated />
+  } else {
+    return <UnAuthenticated />
+  }
 }
 
 export default App
