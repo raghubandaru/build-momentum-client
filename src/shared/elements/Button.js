@@ -6,28 +6,21 @@ export const Button = styled.button`
   color: #0A6c74;
   cursor: pointer;
   font-family: inherit;
-  font-weight: normal;
   font-size: 1.5rem;
   line-height: inherit;
-  padding: 1rem 2rem;
+  padding: 1rem;
   text-align: center;
   text-decoration: none;
   width: ${props => props.width && `${props.width}px`};
-
-  ${props =>
-    props.fullwidth &&
-    css`
-      width: 100%;
-    `}
 
   ${props =>
     props.primary &&
     css`
       background: #0a6c74;
       color: #f0f4f8;
-      font-weight: bold;
+      font-weight: 600;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      letter-spacing: 2px;
     `}
 
   ${props =>
@@ -35,11 +28,36 @@ export const Button = styled.button`
     css`
       border: 2px solid #0a6c74;
     `}
+  
+  ${props =>
+    props.rounded &&
+    css`
+      border-radius: 100px;
+      border: 2px solid #0a6c74;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 0.5rem 1rem;
+      text-transform: uppercase;
+    `}
+
+    ${props =>
+      props.fullwidth &&
+      css`
+        width: 100%;
+      `}
 
   ${props =>
-    props.disabled &&
+    props.brand &&
     css`
-      opacity: 0.5;
-      cursor: not-allowed;
+      font-size: 2rem;
+      font-weight: 600;
     `}
+
+    ${props =>
+      props.disabled &&
+      css`
+        cursor: not-allowed;
+        opacity: 0.5;
+      `}
 `

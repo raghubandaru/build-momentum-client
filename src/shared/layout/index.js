@@ -31,15 +31,22 @@ function Layout({ children }) {
       <WrapperHead>
         <Container>
           <Nav>
-            <Button as={Link} to="/">
+            <Button brand as={Link} to="/">
               BM
             </Button>
             {user ? (
-              <Button onClick={handleLogout}>Logout</Button>
+              <div>
+                <Button as={Link} to="/goals">
+                  Archived
+                </Button>
+                <Button onClick={handleLogout}>Logout</Button>
+              </div>
             ) : (
-              <Button as={Link} to="/login">
-                Login
-              </Button>
+              <div>
+                <Button as={Link} to="/login">
+                  Login
+                </Button>
+              </div>
             )}
           </Nav>
         </Container>

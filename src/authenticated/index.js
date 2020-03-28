@@ -1,28 +1,28 @@
 import React from 'react'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
-import { Header, Main } from '../shared/components'
-import Layout from '../shared/layout'
+import { Goals, Goal, GoalForm, TaskForm } from './components'
 
 function Authenticated() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Header>
-          <h1>Header Title</h1>
-          <p>Header Description</p>
-        </Header>
-        <Main>
-          <Switch>
-            <Route exact path="/goals">
-              <p>Dashboard</p>
-            </Route>
-            <Route>
-              <Redirect to="/goals" />
-            </Route>
-          </Switch>
-        </Main>
-      </Layout>
+      <Switch>
+        <Route path="/tasks/create">
+          <TaskForm />
+        </Route>
+        <Route exact path="/goals/create">
+          <GoalForm />
+        </Route>
+        <Route exact path="/goals/:goalId">
+          <Goal />
+        </Route>
+        <Route exact path="/goals">
+          <Goals />
+        </Route>
+        <Route>
+          <Redirect to="/goals?active=true" />
+        </Route>
+      </Switch>
     </BrowserRouter>
   )
 }
