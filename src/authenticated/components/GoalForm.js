@@ -4,16 +4,24 @@ import { useHistory } from 'react-router-dom'
 
 import Layout from '../../shared/layout'
 import { StyledHeader, Main } from '../../shared/components'
-import { Button, FormGroup, Input, Label } from '../../shared/elements'
+import {
+  Button,
+  FormGroup,
+  Input,
+  Label,
+  Textarea
+} from '../../shared/elements'
 import { getAccessToken } from '../../shared/helpers/token'
 
-function GoalForm() {
-  const [name, setName] = useState('')
+function GoalForm({ id, goalName = '', goalReview = '', editMode = false }) {
+  const [name, setName] = useState(goalName)
+  const [review, setReview] = useState(goalReview)
 
   const history = useHistory()
 
   const handleGoalCreation = e => {
     e.preventDefault()
+
     const url = `${process.env.REACT_APP_API_DOMAIN}/goals`
     const data = { name }
     const config = {
@@ -24,6 +32,26 @@ function GoalForm() {
       },
       data
     }
+
+    axios(config)
+      .then(() => history.push('/goals?active=true'))
+      .catch(error => console.log(error))
+  }
+
+  const handleGoalEdit = e => {
+    e.preventDefault()
+
+    const url = `${process.env.REACT_APP_API_DOMAIN}/goals/${id}`
+    const data = { name, review }
+    const config = {
+      method: 'PATCH',
+      url,
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      },
+      data
+    }
+
     axios(config)
       .then(() => history.push('/goals?active=true'))
       .catch(error => console.log(error))
@@ -33,7 +61,7 @@ function GoalForm() {
     <Layout>
       <StyledHeader title="Get Started" quote="What's planned for this week?" />
       <Main>
-        <form onSubmit={handleGoalCreation}>
+        <form onSubmit={editMode ? handleGoalEdit : handleGoalCreation}>
           <FormGroup>
             <Label htmlFor="name">Goal Name</Label>
             <Input
@@ -45,8 +73,20 @@ function GoalForm() {
               autoFocus
             />
           </FormGroup>
+          {editMode && (
+            <FormGroup>
+              <Label htmlFor="review">Goal Review</Label>
+              <Textarea
+                name="review"
+                id="review"
+                rows="4"
+                value={review}
+                onChange={e => setReview(e.target.value)}
+              />
+            </FormGroup>
+          )}
           <FormGroup>
-            <Button primary>Create Goal</Button>
+            <Button primary>{editMode ? 'Edit Goal' : 'Create Goal'}</Button>
           </FormGroup>
         </form>
       </Main>

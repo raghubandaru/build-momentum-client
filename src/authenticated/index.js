@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
-import { Goals, Goal, GoalForm, TaskForm } from './components'
+import { Goals, Goal, GoalAdd, GoalEdit, TaskForm } from './components'
 
 function Authenticated() {
   return (
@@ -11,7 +11,10 @@ function Authenticated() {
           <TaskForm />
         </Route>
         <Route exact path="/goals/create">
-          <GoalForm />
+          <GoalAdd />
+        </Route>
+        <Route exact path="/goals/edit/:id">
+          <GoalEdit />
         </Route>
         <Route exact path="/goals/:goalId">
           <Goal />

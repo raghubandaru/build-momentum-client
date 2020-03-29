@@ -1,4 +1,6 @@
 export * from './Goals'
 export * from './Goal'
+export * from './GoalAdd'
+export * from './GoalEdit'
 export * from './GoalForm'
 export * from './TaskForm'

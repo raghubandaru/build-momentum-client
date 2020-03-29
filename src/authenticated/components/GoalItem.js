@@ -7,11 +7,23 @@ import GoalDetails from './GoalDetails'
 import SideContent from './SideContent'
 
 function GoalItem({ goal: { _id, name, review, isActive }, className }) {
+  console.log('_id', _id)
   return (
     <div className={className}>
       <GoalDetails name={name} review={review} />
       <SideContent>
-        {isActive && <Button rounded>Edit</Button>}
+        {isActive && (
+          <Button
+            rounded
+            as={Link}
+            to={{
+              pathname: `/goals/edit/${_id}`,
+              state: { id: _id, goalName: name, goalReview: review }
+            }}
+          >
+            Edit
+          </Button>
+        )}
         <Button rounded as={Link} to={`/goals/${_id}`}>
           Tasks
         </Button>

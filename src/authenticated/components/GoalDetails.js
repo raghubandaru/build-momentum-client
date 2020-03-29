@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function GoalDetails({ className, name, review }) {
+function GoalDetails({ className, name, review = 'No review available' }) {
   return (
     <div className={className}>
       <h2>{name}</h2>
