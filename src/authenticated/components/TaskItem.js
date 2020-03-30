@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Button } from '../../shared/elements'
 import TaskStatus from './TaskStatus'
 
 function TaskItem({
-  task: { _id, description, isCompleted },
+  task: { _id: taskId, description, isCompleted },
   isActive,
   className
 }) {
@@ -14,7 +15,11 @@ function TaskItem({
       <p>{description}</p>
       <div>
         <TaskStatus isCompleted={isCompleted} isActive={isActive} />
-        {isActive && <Button rounded>Edit</Button>}
+        {isActive && (
+          <Button rounded as={Link} to={`/tasks/edit/${taskId}`}>
+            Edit
+          </Button>
+        )}
       </div>
     </div>
   )

@@ -6,9 +6,11 @@ import TaskAction from './TaskAction'
 import TaskItem from './TaskItem'
 
 function TaskList({ className, isActive, tasks, mission }) {
-  const action = isActive ? 'Create Task' : 'Active Goal'
-  const pathname = isActive ? '/tasks/create' : '/goals?active=true'
-  const text = isActive ? 'Get up and running with the first task' : 'No task registered when this goal was active'
+  const action = isActive ? 'Create Task' : 'Archive Goals'
+  const pathname = isActive ? '/tasks/create' : '/goals/archive'
+  const text = isActive
+    ? 'Get up and running with the first task'
+    : 'No task registered when this goal was active'
 
   if (tasks.length === 0) {
     return (

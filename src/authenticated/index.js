@@ -9,7 +9,8 @@ import {
   GoalActive,
   GoalAdd,
   GoalEdit,
-  TaskForm
+  TaskAdd,
+  TaskEdit
 } from './components'
 
 function Authenticated() {
@@ -43,7 +44,10 @@ function Authenticated() {
     <BrowserRouter>
       <Switch>
         <Route path="/tasks/create">
-          <TaskForm activeGoal={activeGoal} />
+          <TaskAdd activeGoal={activeGoal} />
+        </Route>
+        <Route path="/tasks/edit/:taskId">
+          <TaskEdit activeGoal={activeGoal} />
         </Route>
         <Route exact path="/goals/active">
           <GoalActive activeGoal={activeGoal} setActiveGoal={setActiveGoal} />

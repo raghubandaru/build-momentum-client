@@ -25,7 +25,7 @@ function GoalForm({
 
   const history = useHistory()
 
-  const handleGoalCreation = e => {
+  const handleGoalCreate = e => {
     e.preventDefault()
 
     const url = `${process.env.REACT_APP_API_DOMAIN}/goals`
@@ -74,7 +74,7 @@ function GoalForm({
     <Layout>
       <StyledHeader title="Get Started" quote="What's planned for this week?" />
       <Main>
-        <form onSubmit={editMode ? handleGoalEdit : handleGoalCreation}>
+        <form onSubmit={editMode ? handleGoalEdit : handleGoalCreate}>
           <FormGroup>
             <Label htmlFor="name">Goal Name</Label>
             <Input

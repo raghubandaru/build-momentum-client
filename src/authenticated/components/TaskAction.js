@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { Button } from '../../shared/elements'
 
-function TaskAction({ className, isActive, pathname, mission }) {
+function TaskAction({ className, isActive, pathname }) {
   if (!isActive) {
     return null
   }
@@ -15,10 +15,7 @@ function TaskAction({ className, isActive, pathname, mission }) {
         primary
         as={Link}
         to={{
-          pathname,
-          state: {
-            mission
-          }
+          pathname
         }}
       >
         New Task
