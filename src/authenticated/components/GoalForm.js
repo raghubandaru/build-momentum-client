@@ -13,7 +13,13 @@ import {
 } from '../../shared/elements'
 import { getAccessToken } from '../../shared/helpers/token'
 
-function GoalForm({ id, goalName = '', goalReview = '', editMode = false }) {
+function GoalForm({
+  id,
+  goalName = '',
+  goalReview = '',
+  editMode = false,
+  setActiveGoal
+}) {
   const [name, setName] = useState(goalName)
   const [review, setReview] = useState(goalReview)
 
@@ -34,7 +40,11 @@ function GoalForm({ id, goalName = '', goalReview = '', editMode = false }) {
     }
 
     axios(config)
-      .then(() => history.push('/goals?active=true'))
+      .then(({ goal }) => {
+        console.log('edit', goal)
+        setActiveGoal(goal)
+        history.push('/goals/active')
+      })
       .catch(error => console.log(error))
   }
 
@@ -53,7 +63,10 @@ function GoalForm({ id, goalName = '', goalReview = '', editMode = false }) {
     }
 
     axios(config)
-      .then(() => history.push('/goals?active=true'))
+      .then(({ goal }) => {
+        setActiveGoal(goal)
+        history.push('/goals/active')
+      })
       .catch(error => console.log(error))
   }
 

@@ -1,19 +1,16 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
 
 import { GoalForm } from './GoalForm'
 
-function GoalEdit() {
-  const {
-    state: { id, goalName, goalReview }
-  } = useLocation()
-  console.log('id', id)
+function GoalEdit({ activeGoal, setActiveGoal }) {
+  const { _id, name, review } = activeGoal
 
   return (
     <GoalForm
-      id={id}
-      goalName={goalName}
-      goalReview={goalReview}
+      id={_id}
+      goalName={name}
+      goalReview={review}
+      setActiveGoal={setActiveGoal}
       editMode={true}
     />
   )

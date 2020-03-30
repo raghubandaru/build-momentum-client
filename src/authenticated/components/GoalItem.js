@@ -7,7 +7,6 @@ import GoalDetails from './GoalDetails'
 import SideContent from './SideContent'
 
 function GoalItem({ goal: { _id, name, review, isActive }, className }) {
-  console.log('_id', _id)
   return (
     <div className={className}>
       <GoalDetails name={name} review={review} />
@@ -17,8 +16,7 @@ function GoalItem({ goal: { _id, name, review, isActive }, className }) {
             rounded
             as={Link}
             to={{
-              pathname: `/goals/edit/${_id}`,
-              state: { id: _id, goalName: name, goalReview: review }
+              pathname: `/goals/edit/${_id}`
             }}
           >
             Edit

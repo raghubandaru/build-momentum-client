@@ -36,8 +36,8 @@ function Layout({ children }) {
             </Button>
             {user ? (
               <div>
-                <Button as={Link} to="/goals">
-                  Archived
+                <Button as={Link} to="/goals/archive">
+                  Archive
                 </Button>
                 <Button onClick={handleLogout}>Logout</Button>
               </div>
