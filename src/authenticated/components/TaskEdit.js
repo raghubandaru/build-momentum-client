@@ -15,7 +15,7 @@ function TaskEdit({ activeGoal }) {
   const { taskId } = useParams()
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_API_DOMAIN}/tasks/${taskId}`
+    const url = `${process.env.REACT_APP_API_DOMAIN}/tasks/${taskId}?mission=${mission}`
     const config = {
       url,
       headers: {
@@ -31,7 +31,7 @@ function TaskEdit({ activeGoal }) {
       .catch(() => {
         setLoading(false)
       })
-  }, [taskId])
+  }, [taskId, mission])
 
   if (isLoading) {
     return 'Loading...'
