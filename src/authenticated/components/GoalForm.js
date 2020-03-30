@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
-import Layout from '../../shared/layout'
-import { StyledHeader, Main } from '../../shared/components'
 import {
   Button,
   FormGroup,
@@ -14,7 +12,7 @@ import {
 import { getAccessToken } from '../../shared/helpers/token'
 
 function GoalForm({
-  id,
+  goalId,
   goalName = '',
   goalReview = '',
   editMode = false,
@@ -40,8 +38,7 @@ function GoalForm({
     }
 
     axios(config)
-      .then(({ goal }) => {
-        console.log('edit', goal)
+      .then(({ data: { goal } }) => {
         setActiveGoal(goal)
         history.push('/goals/active')
       })
@@ -51,7 +48,7 @@ function GoalForm({
   const handleGoalEdit = e => {
     e.preventDefault()
 
-    const url = `${process.env.REACT_APP_API_DOMAIN}/goals/${id}`
+    const url = `${process.env.REACT_APP_API_DOMAIN}/goals/${goalId}`
     const data = { name, review }
     const config = {
       method: 'PATCH',
@@ -63,7 +60,7 @@ function GoalForm({
     }
 
     axios(config)
-      .then(({ goal }) => {
+      .then(({ data: { goal } }) => {
         setActiveGoal(goal)
         history.push('/goals/active')
       })
@@ -71,39 +68,34 @@ function GoalForm({
   }
 
   return (
-    <Layout>
-      <StyledHeader title="Get Started" quote="What's planned for this week?" />
-      <Main>
-        <form onSubmit={editMode ? handleGoalEdit : handleGoalCreate}>
-          <FormGroup>
-            <Label htmlFor="name">Goal Name</Label>
-            <Input
-              type="text"
-              name="name"
-              id="name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              autoFocus
-            />
-          </FormGroup>
-          {editMode && (
-            <FormGroup>
-              <Label htmlFor="review">Goal Review</Label>
-              <Textarea
-                name="review"
-                id="review"
-                rows="4"
-                value={review}
-                onChange={e => setReview(e.target.value)}
-              />
-            </FormGroup>
-          )}
-          <FormGroup>
-            <Button primary>{editMode ? 'Edit Goal' : 'Create Goal'}</Button>
-          </FormGroup>
-        </form>
-      </Main>
-    </Layout>
+    <form onSubmit={editMode ? handleGoalEdit : handleGoalCreate}>
+      <FormGroup>
+        <Label htmlFor="name">Goal Name</Label>
+        <Input
+          type="text"
+          name="name"
+          id="name"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          autoFocus
+        />
+      </FormGroup>
+      {editMode && (
+        <FormGroup>
+          <Label htmlFor="review">Goal Review</Label>
+          <Textarea
+            name="review"
+            id="review"
+            rows="4"
+            value={review}
+            onChange={e => setReview(e.target.value)}
+          />
+        </FormGroup>
+      )}
+      <FormGroup>
+        <Button primary>{editMode ? 'Edit Goal' : 'Create Goal'}</Button>
+      </FormGroup>
+    </form>
   )
 }
 
