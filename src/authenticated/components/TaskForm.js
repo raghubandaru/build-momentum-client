@@ -61,6 +61,27 @@ function TaskForm({
       .catch(error => console.log(error))
   }
 
+  const handleTaskDelete = e => {
+    e.preventDefault()
+
+    const url = `${process.env.REACT_APP_API_DOMAIN}/tasks/${taskId}?mission=${mission}`
+    const config = {
+      method: 'DELETE',
+      url,
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
+    }
+
+    axios(config)
+      .then(({ data: { ok } }) => {
+        if (ok) {
+          history.push(`/goals/${mission}`)
+        }
+      })
+      .catch(error => console.log(error))
+  }
+
   return (
     <form onSubmit={editMode ? handleTaskEdit : handleTaskCreate}>
       <FormGroup>
@@ -90,6 +111,13 @@ function TaskForm({
       <FormGroup>
         <Button primary>{editMode ? 'Edit Task' : 'Create Task'}</Button>
       </FormGroup>
+      {editMode && (
+        <FormGroup>
+          <Button secondary onClick={handleTaskDelete}>
+            Delete
+          </Button>
+        </FormGroup>
+      )}
     </form>
   )
 }
