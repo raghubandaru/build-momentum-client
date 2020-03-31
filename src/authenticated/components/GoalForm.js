@@ -67,6 +67,27 @@ function GoalForm({
       .catch(error => console.log(error))
   }
 
+  const handleGoalDelete = e => {
+    e.preventDefault()
+
+    const url = `${process.env.REACT_APP_API_DOMAIN}/goals/${goalId}`
+    const config = {
+      method: 'DELETE',
+      url,
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
+    }
+
+    axios(config)
+      .then(({ data: { ok } }) => {
+        if (ok) {
+          setActiveGoal(null)
+        }
+      })
+      .catch(error => console.log(error))
+  }
+
   return (
     <form onSubmit={editMode ? handleGoalEdit : handleGoalCreate}>
       <FormGroup>
@@ -95,6 +116,13 @@ function GoalForm({
       <FormGroup>
         <Button primary>{editMode ? 'Edit Goal' : 'Create Goal'}</Button>
       </FormGroup>
+      {editMode && (
+        <FormGroup>
+          <Button secondary onClick={handleGoalDelete}>
+            Delete
+          </Button>
+        </FormGroup>
+      )}
     </form>
   )
 }

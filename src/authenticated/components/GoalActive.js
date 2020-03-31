@@ -5,7 +5,7 @@ import { StyledHeader, Main } from '../../shared/components'
 import GoalItem from './GoalItem'
 import Placeholder from './Placeholder'
 
-function GoalActive({ activeGoal, setActiveGoal }) {
+function GoalActive({ activeGoal }) {
   const action = 'Get Started'
   const pathname = '/goals/create'
   const quote = 'Goal of the week'
