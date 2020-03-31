@@ -16,7 +16,7 @@ function GoalItem({ goal: { _id, name, review, isActive }, className }) {
             rounded
             as={Link}
             to={{
-              pathname: `/goals/edit/${_id}`
+              pathname: `/goals/active/edit`
             }}
           >
             Edit
