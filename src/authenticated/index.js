@@ -9,6 +9,7 @@ import {
   GoalActive,
   GoalAdd,
   GoalEdit,
+  Profile,
   TaskAdd,
   TaskEdit
 } from './components'
@@ -43,6 +44,9 @@ function Authenticated({ newRegister, setNewRegister }) {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/profile">
+          <Profile />
+        </Route>
         <Route path="/tasks/create">
           <TaskAdd activeGoal={activeGoal} />
         </Route>

@@ -29,7 +29,7 @@ function GoalActive({ activeGoal, className, newRegister, setNewRegister }) {
           )}
         </Main>
       </Layout>
-      <DialogModal newRegister={newRegister} close={close} />
+      <DialogModal isOpen={newRegister} close={close} />
     </div>
   )
 }
