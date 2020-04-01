@@ -11,7 +11,7 @@ export const Button = styled.button`
   padding: 1rem;
   text-align: center;
   text-decoration: none;
-  width: ${props => props.width && `${props.width}px`};
+  width: ${props => props.width && `${props.width}%`};
 
   ${props =>
     props.primary &&

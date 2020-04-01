@@ -5,7 +5,7 @@ import { StyledHeader, Main } from '../shared/components'
 import { Landing, Login, Register } from './components'
 import Layout from '../shared/layout'
 
-function UnAuthenticated() {
+function UnAuthenticated({ setNewRegister }) {
   return (
     <BrowserRouter>
       <Layout>
@@ -19,7 +19,7 @@ function UnAuthenticated() {
               <Login />
             </Route>
             <Route path="/register">
-              <Register />
+              <Register setNewRegister={setNewRegister} />
             </Route>
             <Route>
               <Redirect to="/" />

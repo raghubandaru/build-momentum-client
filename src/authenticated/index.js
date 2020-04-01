@@ -13,7 +13,7 @@ import {
   TaskEdit
 } from './components'
 
-function Authenticated() {
+function Authenticated({ newRegister, setNewRegister }) {
   const [activeGoal, setActiveGoal] = useState(null)
 
   const [isLoading, setLoading] = useState(true)
@@ -56,7 +56,12 @@ function Authenticated() {
           <GoalEdit activeGoal={activeGoal} setActiveGoal={setActiveGoal} />
         </Route>
         <Route exact path="/goals/active">
-          <GoalActive activeGoal={activeGoal} setActiveGoal={setActiveGoal} />
+          <GoalActive
+            activeGoal={activeGoal}
+            setActiveGoal={setActiveGoal}
+            newRegister={newRegister}
+            setNewRegister={setNewRegister}
+          />
         </Route>
         <Route exact path="/goals/archive">
           <GoalsArchive />

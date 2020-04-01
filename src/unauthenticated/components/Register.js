@@ -12,7 +12,7 @@ import {
 import { setAccessToken } from '../../shared/helpers/token'
 import { useUser } from '../../shared/context/User'
 
-function Register() {
+function Register({ setNewRegister }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -32,6 +32,7 @@ function Register() {
 
     axios(config).then(({ data: { user, accessToken } }) => {
       setAccessToken(accessToken)
+      setNewRegister(true)
       setUser(user)
     })
   }
