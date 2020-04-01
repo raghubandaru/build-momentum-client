@@ -7,7 +7,16 @@ export const ButtonGroup = styled.div`
   justify-content: space-between;
   align-items: baseline;
 
+  & > * {
+    margin-right: 1rem;
+  }
+
   ${below.small`
     flex-direction: column;
+
+    & > * {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
   `}
 `

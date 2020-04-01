@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
+import AlertModal from './AlertModal'
+import { getAccessToken } from '../../shared/helpers/token'
 import {
   Button,
   FormGroup,
-  Textarea,
   Label,
-  Input
+  Input,
+  Textarea
 } from '../../shared/elements'
-import { getAccessToken } from '../../shared/helpers/token'
 
 function TaskForm({
   editMode,
@@ -20,8 +21,11 @@ function TaskForm({
 }) {
   const [description, setDescription] = useState(taskDescription)
   const [isCompleted, setCompleted] = useState(taskCompleted)
+  const [showDialog, setShowDialog] = useState(false)
 
   const history = useHistory()
+
+  const open = () => setShowDialog(true)
 
   const handleTaskCreate = e => {
     e.preventDefault()
@@ -61,9 +65,7 @@ function TaskForm({
       .catch(error => console.log(error))
   }
 
-  const handleTaskDelete = e => {
-    e.preventDefault()
-
+  const handleTaskDelete = () => {
     const url = `${process.env.REACT_APP_API_DOMAIN}/tasks/${taskId}?mission=${mission}`
     const config = {
       method: 'DELETE',
@@ -83,42 +85,55 @@ function TaskForm({
   }
 
   return (
-    <form onSubmit={editMode ? handleTaskEdit : handleTaskCreate}>
-      <FormGroup>
-        <Label htmlFor="description">Description</Label>
-        <Textarea
-          type="text"
-          name="description"
-          id="description"
-          rows="4"
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-          autoFocus
-        />
-      </FormGroup>
-      {editMode && (
-        <FormGroup checked={true}>
-          <Input
-            type="checkbox"
-            name="isCompleted"
-            id="isCompleted"
-            checked={isCompleted}
-            onChange={e => setCompleted(e.target.checked)}
+    <>
+      <form onSubmit={editMode ? handleTaskEdit : handleTaskCreate}>
+        <FormGroup>
+          <Label htmlFor="description">Description</Label>
+          <Textarea
+            type="text"
+            name="description"
+            id="description"
+            rows="4"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+            autoFocus
           />
-          <Label htmlFor="isCompleted">Completed</Label>
         </FormGroup>
-      )}
-      <FormGroup>
-        <Button primary>{editMode ? 'Edit Task' : 'Create Task'}</Button>
-      </FormGroup>
+        {editMode && (
+          <FormGroup checked={true}>
+            <Input
+              type="checkbox"
+              name="isCompleted"
+              id="isCompleted"
+              checked={isCompleted}
+              onChange={e => setCompleted(e.target.checked)}
+            />
+            <Label htmlFor="isCompleted">Completed</Label>
+          </FormGroup>
+        )}
+        <FormGroup>
+          <Button primary>{editMode ? 'Edit Task' : 'Create Task'}</Button>
+        </FormGroup>
+      </form>
       {editMode && (
         <FormGroup>
-          <Button secondary onClick={handleTaskDelete}>
+          <Button secondary onClick={open}>
             Delete
           </Button>
         </FormGroup>
       )}
-    </form>
+      {showDialog && (
+        <AlertModal
+          handleDelete={handleTaskDelete}
+          setShowDialog={setShowDialog}
+        >
+          <p>
+            Are you sure you want to delete this task? This action is permanent
+            and can not be undone.
+          </p>
+        </AlertModal>
+      )}
+    </>
   )
 }
 

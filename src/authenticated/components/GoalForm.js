@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
+import AlertModal from './AlertModal'
 import {
   Button,
   FormGroup,
@@ -20,8 +21,11 @@ function GoalForm({
 }) {
   const [name, setName] = useState(goalName)
   const [review, setReview] = useState(goalReview)
+  const [showDialog, setShowDialog] = useState(false)
 
   const history = useHistory()
+
+  const open = () => setShowDialog(true)
 
   const handleGoalCreate = e => {
     e.preventDefault()
@@ -67,9 +71,7 @@ function GoalForm({
       .catch(error => console.log(error))
   }
 
-  const handleGoalDelete = e => {
-    e.preventDefault()
-
+  const handleGoalDelete = () => {
     const url = `${process.env.REACT_APP_API_DOMAIN}/goals/${goalId}`
     const config = {
       method: 'DELETE',
@@ -89,41 +91,55 @@ function GoalForm({
   }
 
   return (
-    <form onSubmit={editMode ? handleGoalEdit : handleGoalCreate}>
-      <FormGroup>
-        <Label htmlFor="name">Goal Name</Label>
-        <Input
-          type="text"
-          name="name"
-          id="name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          autoFocus
-        />
-      </FormGroup>
-      {editMode && (
+    <>
+      <form onSubmit={editMode ? handleGoalEdit : handleGoalCreate}>
         <FormGroup>
-          <Label htmlFor="review">Goal Review</Label>
-          <Textarea
-            name="review"
-            id="review"
-            rows="4"
-            value={review}
-            onChange={e => setReview(e.target.value)}
+          <Label htmlFor="name">Goal Name</Label>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            autoFocus
           />
         </FormGroup>
-      )}
-      <FormGroup>
-        <Button primary>{editMode ? 'Edit Goal' : 'Create Goal'}</Button>
-      </FormGroup>
+        {editMode && (
+          <FormGroup>
+            <Label htmlFor="review">Goal Review</Label>
+            <Textarea
+              name="review"
+              id="review"
+              rows="4"
+              value={review}
+              onChange={e => setReview(e.target.value)}
+            />
+          </FormGroup>
+        )}
+        <FormGroup>
+          <Button primary>{editMode ? 'Edit Goal' : 'Create Goal'}</Button>
+        </FormGroup>
+      </form>
       {editMode && (
         <FormGroup>
-          <Button secondary onClick={handleGoalDelete}>
+          <Button secondary onClick={open}>
             Delete
           </Button>
         </FormGroup>
       )}
-    </form>
+      {showDialog && (
+        <AlertModal
+          handleDelete={handleGoalDelete}
+          setShowDialog={setShowDialog}
+        >
+          <p>
+            Are you sure you want to delete this Goal? Deleting this goal inturn
+            deletes all the associated tasks. This action is permanent and can
+            not be undone.
+          </p>
+        </AlertModal>
+      )}
+    </>
   )
 }
 

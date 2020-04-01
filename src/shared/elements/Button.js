@@ -41,11 +41,11 @@ export const Button = styled.button`
       text-transform: uppercase;
     `}
 
-    ${props =>
-      props.fullwidth &&
-      css`
-        width: 100%;
-      `}
+  ${props =>
+    props.fullwidth &&
+    css`
+      width: 100%;
+    `}
 
   ${props =>
     props.brand &&
@@ -54,10 +54,16 @@ export const Button = styled.button`
       font-weight: 600;
     `}
 
-    ${props =>
-      props.disabled &&
-      css`
-        cursor: not-allowed;
-        opacity: 0.5;
-      `}
+  ${props =>
+    props.disabled &&
+    css`
+      cursor: not-allowed;
+      opacity: 0.5;
+    `}
+
+  ${props =>
+    props.delete &&
+    css`
+      background: #a61b1b;
+    `}
 `
