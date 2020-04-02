@@ -4,6 +4,7 @@ import { Dialog, DialogContent } from '@reach/dialog'
 import VisuallyHidden from '@reach/visually-hidden'
 import '@reach/dialog/styles.css'
 
+import { below } from '../../shared/utilities/Breakpoints'
 import { Button } from '../../shared/elements'
 import { Upload } from './Upload'
 
@@ -22,8 +23,30 @@ function DialogModal({ isOpen, close, className }) {
 }
 
 export default styled(DialogModal)`
-  [data-reach-dialog-content] {
-    width: 100%;
-    margin: 2rem 0;
+  &[data-reach-dialog-content] {
+    background: #f0f4f8;
+    width: 60vw;
   }
+
+  [data-reach-dialog-content] {
+    background: #f0f4f8;
+    margin: 5rem auto;
+    width: 100%;
+  }
+
+  ${below.med`
+    &[data-reach-dialog-content] {
+      width: 90vw;
+    }
+  `}
+
+  ${below.small`
+    &[data-reach-dialog-content] {
+      width: 90vw;
+    }
+
+    [data-reach-dialog-content] {
+      padding: 0;
+    }
+  `}
 `

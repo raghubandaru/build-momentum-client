@@ -7,6 +7,7 @@ import {
 } from '@reach/alert-dialog'
 import '@reach/dialog/styles.css'
 
+import { below } from '../../shared/utilities/Breakpoints'
 import { Button, ButtonGroup } from '../../shared/elements'
 
 function AlertModal({ className, children, handleDelete, setShowDialog }) {
@@ -21,7 +22,7 @@ function AlertModal({ className, children, handleDelete, setShowDialog }) {
       <AlertDialogDescription>{children}</AlertDialogDescription>
       <ButtonGroup>
         <Button ref={cancelRef} onClick={close}>
-          Nevermind, don't delete.
+          Cancel
         </Button>{' '}
         <Button
           primary
@@ -31,7 +32,7 @@ function AlertModal({ className, children, handleDelete, setShowDialog }) {
             close()
           }}
         >
-          Yes, delete
+          Delete
         </Button>
       </ButtonGroup>
     </AlertDialog>
@@ -39,16 +40,35 @@ function AlertModal({ className, children, handleDelete, setShowDialog }) {
 }
 
 export default styled(AlertModal)`
-  background: #f0f4f8;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  div:not(:last-child) {
+    margin-bottom: 3rem;
+  }
 
-  [data-reach-alert-dialog-description] {
+  &[data-reach-dialog-content] {
+    background: #f0f4f8;
+    padding: 5rem;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 
-  & > * {
-    margin-bottom: 2rem;
-  }
+  ${below.med`
+    &[data-reach-dialog-content] {
+      width: 80vw;
+      padding: 5rem 3rem;
+    }
+  `}
+
+  ${below.small`
+    &[data-reach-dialog-content] {
+      width: 90vw;
+      padding: 5rem 2rem;
+    }
+
+    ${Button} {
+      width: 100%;
+    }
+  `}
 `
