@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
 import AlertModal from './AlertModal'
-import { getAccessToken } from '../../shared/helpers/token'
+import { ErrorMessage } from '../../shared/components'
 import {
   Button,
   FormGroup,
@@ -11,6 +11,8 @@ import {
   Input,
   Textarea
 } from '../../shared/elements'
+import { getAccessToken } from '../../shared/helpers/token'
+import { isError, validateTask } from '../../shared/utilities/validation'
 
 function TaskForm({
   editMode,
@@ -22,10 +24,19 @@ function TaskForm({
   const [description, setDescription] = useState(taskDescription)
   const [isCompleted, setCompleted] = useState(taskCompleted)
   const [showDialog, setShowDialog] = useState(false)
+  const [touched, setTouched] = useState({
+    description: false
+  })
 
   const history = useHistory()
 
   const open = () => setShowDialog(true)
+
+  const handleBlur = e => {
+    const fieldName = e.target.name
+
+    setTouched({ ...touched, [fieldName]: true })
+  }
 
   const handleTaskCreate = e => {
     e.preventDefault()
@@ -84,6 +95,8 @@ function TaskForm({
       .catch(error => console.log(error))
   }
 
+  const errors = validateTask(description)
+
   return (
     <>
       <form onSubmit={editMode ? handleTaskEdit : handleTaskCreate}>
@@ -96,8 +109,12 @@ function TaskForm({
             rows="4"
             value={description}
             onChange={e => setDescription(e.target.value)}
+            onBlur={handleBlur}
             autoFocus
           />
+          {errors.description && touched.description && (
+            <ErrorMessage error={errors.description} />
+          )}
         </FormGroup>
         {editMode && (
           <FormGroup checked={true}>
@@ -112,7 +129,9 @@ function TaskForm({
           </FormGroup>
         )}
         <FormGroup>
-          <Button primary>{editMode ? 'Edit Task' : 'Create Task'}</Button>
+          <Button disabled={isError(errors)} primary>
+            {editMode ? 'Edit Task' : 'Create Task'}
+          </Button>
         </FormGroup>
       </form>
       {editMode && (

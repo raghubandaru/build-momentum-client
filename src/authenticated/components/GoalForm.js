@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
 import AlertModal from './AlertModal'
+import { ErrorMessage } from '../../shared/components'
 import {
   Button,
   FormGroup,
@@ -11,6 +12,7 @@ import {
   Textarea
 } from '../../shared/elements'
 import { getAccessToken } from '../../shared/helpers/token'
+import { isError, validateGoal } from '../../shared/utilities/validation'
 
 function GoalForm({
   goalId,
@@ -22,10 +24,30 @@ function GoalForm({
   const [name, setName] = useState(goalName)
   const [review, setReview] = useState(goalReview)
   const [showDialog, setShowDialog] = useState(false)
+  const [touched, setTouched] = useState({
+    name: false
+  })
 
   const history = useHistory()
 
   const open = () => setShowDialog(true)
+
+  const handleChange = e => {
+    const fieldName = e.target.name
+    const value = e.target.value
+
+    if (fieldName === 'name') {
+      setName(value)
+    } else if (fieldName === 'review') {
+      setReview(value)
+    }
+  }
+
+  const handleBlur = e => {
+    const fieldName = e.target.name
+
+    setTouched({ ...touched, [fieldName]: true })
+  }
 
   const handleGoalCreate = e => {
     e.preventDefault()
@@ -90,6 +112,8 @@ function GoalForm({
       .catch(error => console.log(error))
   }
 
+  const errors = validateGoal(name)
+
   return (
     <>
       <form onSubmit={editMode ? handleGoalEdit : handleGoalCreate}>
@@ -100,9 +124,10 @@ function GoalForm({
             name="name"
             id="name"
             value={name}
-            onChange={e => setName(e.target.value)}
-            autoFocus
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
+          {errors.name && touched.name && <ErrorMessage error={errors.name} />}
         </FormGroup>
         {editMode && (
           <FormGroup>
@@ -112,12 +137,15 @@ function GoalForm({
               id="review"
               rows="4"
               value={review}
-              onChange={e => setReview(e.target.value)}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </FormGroup>
         )}
         <FormGroup>
-          <Button primary>{editMode ? 'Edit Goal' : 'Create Goal'}</Button>
+          <Button disabled={isError(errors)} primary>
+            {editMode ? 'Edit Goal' : 'Create Goal'}
+          </Button>
         </FormGroup>
       </form>
       {editMode && (
