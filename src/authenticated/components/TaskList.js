@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Placeholder from './Placeholder'
 import TaskAction from './TaskAction'
 import TaskItem from './TaskItem'
 
-function TaskList({ className, isActive, tasks, mission }) {
+function TaskList({ className, isActive, mission, tasks }) {
   const action = isActive ? 'Create Task' : 'Archive Goals'
   const pathname = isActive ? '/tasks/create' : '/goals/archive'
   const text = isActive
@@ -31,6 +32,13 @@ function TaskList({ className, isActive, tasks, mission }) {
       ))}
     </div>
   )
+}
+
+TaskList.propTypes = {
+  className: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  mission: PropTypes.string.isRequired,
+  tasks: PropTypes.array
 }
 
 export default styled(TaskList)`

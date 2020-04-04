@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Placeholder from './Placeholder'
@@ -20,6 +21,11 @@ function GoalList({ className, goals }) {
       ))}
     </div>
   )
+}
+
+GoalList.propTypes = {
+  className: PropTypes.string.isRequired,
+  goals: PropTypes.array
 }
 
 export default styled(GoalList)`

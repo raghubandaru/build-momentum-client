@@ -1,14 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { Button } from '../../shared/elements'
 
 function Pagination({
   className,
-  hasPrevious,
   hasNext,
-  handlePreviousPage,
-  handleNextPage
+  handleNextPage,
+  hasPrevious,
+  handlePreviousPage
 }) {
   if (!hasPrevious && !hasNext) {
     return null
@@ -17,11 +18,19 @@ function Pagination({
   return (
     <div className={className}>
       {hasPrevious && (
-        <Button onClick={() => handlePreviousPage()}>{'<- Previous'}</Button>
+        <Button onClick={handlePreviousPage}>{'<- Previous'}</Button>
       )}
-      {hasNext && <Button onClick={() => handleNextPage()}>Next -></Button>}
+      {hasNext && <Button onClick={handleNextPage}>Next -></Button>}
     </div>
   )
+}
+
+Pagination.propTypes = {
+  className: PropTypes.string.isRequired,
+  hasNext: PropTypes.bool.isRequired,
+  handleNextPage: PropTypes.func.isRequired,
+  hasPrevious: PropTypes.bool.isRequired,
+  handlePreviousPage: PropTypes.func.isRequired
 }
 
 export default styled(Pagination)`

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -12,7 +13,7 @@ function TaskAction({ className, isActive, pathname }) {
   return (
     <div className={className}>
       <Button
-        primary
+        variant="primary"
         as={Link}
         to={{
           pathname
@@ -22,6 +23,12 @@ function TaskAction({ className, isActive, pathname }) {
       </Button>
     </div>
   )
+}
+
+TaskAction.propTypes = {
+  className: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  pathname: PropTypes.string.isRequired
 }
 
 export default styled(TaskAction)`

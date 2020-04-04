@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import PropTypes from 'prop-types'
 
 export const Button = styled.button`
   background: none;
@@ -14,7 +15,21 @@ export const Button = styled.button`
   width: ${props => props.width && `${props.width}%`};
 
   ${props =>
-    props.primary &&
+    props.disabled &&
+    css`
+      cursor: not-allowed;
+      opacity: 0.5;
+    `}
+
+  ${props =>
+    props.variant === 'brand' &&
+    css`
+      font-size: 2rem;
+      font-weight: 600;
+    `}
+
+  ${props =>
+    props.variant === 'primary' &&
     css`
       background: #0a6c74;
       color: #f0f4f8;
@@ -24,13 +39,17 @@ export const Button = styled.button`
     `}
 
   ${props =>
-    props.secondary &&
+    props.variant === 'remove' &&
     css`
-      border: 2px solid #0a6c74;
+      background: #a61b1b;
+      color: #f0f4f8;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     `}
-  
+
   ${props =>
-    props.rounded &&
+    props.variant === 'rounded' &&
     css`
       border-radius: 100px;
       border: 2px solid #0a6c74;
@@ -42,28 +61,18 @@ export const Button = styled.button`
     `}
 
   ${props =>
-    props.fullwidth &&
+    props.variant === 'secondary' &&
     css`
-      width: 100%;
-    `}
-
-  ${props =>
-    props.brand &&
-    css`
-      font-size: 2rem;
-      font-weight: 600;
-    `}
-
-  ${props =>
-    props.disabled &&
-    css`
-      cursor: not-allowed;
-      opacity: 0.5;
-    `}
-
-  ${props =>
-    props.delete &&
-    css`
-      background: #a61b1b;
+      border: 2px solid #0a6c74;
     `}
 `
+
+Button.propTypes = {
+  variant: PropTypes.oneOf([
+    'brand',
+    'primary',
+    'remove',
+    'rounded',
+    'secondary'
+  ])
+}

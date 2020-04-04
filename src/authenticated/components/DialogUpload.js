@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Dialog, DialogContent } from '@reach/dialog'
 import VisuallyHidden from '@reach/visually-hidden'
@@ -8,7 +9,7 @@ import { below } from '../../shared/utilities/Breakpoints'
 import { Button } from '../../shared/elements'
 import { Upload } from './Upload'
 
-function DialogUpload({ isOpen, close, className }) {
+function DialogUpload({ close, className, isOpen }) {
   return (
     <Dialog className={className} isOpen={isOpen} onDismiss={close}>
       <Button className="close-button" onClick={close}>
@@ -20,6 +21,12 @@ function DialogUpload({ isOpen, close, className }) {
       </DialogContent>
     </Dialog>
   )
+}
+
+DialogUpload.propTypes = {
+  close: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired
 }
 
 export default styled(DialogUpload)`

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -16,13 +17,21 @@ function TaskItem({
       <div>
         <TaskStatus isCompleted={isCompleted} isActive={isActive} />
         {isActive && (
-          <Button rounded as={Link} to={`/tasks/edit/${taskId}`}>
+          <Button variant="rounded" as={Link} to={`/tasks/edit/${taskId}`}>
             Edit
           </Button>
         )}
       </div>
     </div>
   )
+}
+
+TaskItem.propTypes = {
+  task: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isCompleted: PropTypes.string.isRequired
+  })
 }
 
 export default styled(TaskItem)`

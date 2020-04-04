@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 function Header({
@@ -12,6 +13,17 @@ function Header({
       <p>{quote}</p>
     </header>
   )
+}
+
+Header.defaultProps = {
+  title: 'Build Momentum',
+  quote: 'Get up and running with a weekly active goal'
+}
+
+Header.propTypes = {
+  className: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  quote: PropTypes.string
 }
 
 export const StyledHeader = styled(Header)`

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   AlertDialog,
@@ -25,8 +26,7 @@ function AlertModal({ className, children, handleDelete, setShowDialog }) {
           Cancel
         </Button>{' '}
         <Button
-          primary
-          delete
+          variant="remove"
           onClick={() => {
             handleDelete()
             close()
@@ -37,6 +37,13 @@ function AlertModal({ className, children, handleDelete, setShowDialog }) {
       </ButtonGroup>
     </AlertDialog>
   )
+}
+
+AlertModal.propTypes = {
+  className: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  setShowDialog: PropTypes.func.isRequired
 }
 
 export default styled(AlertModal)`

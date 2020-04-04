@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
 import AlertModal from './AlertModal'
@@ -18,8 +19,8 @@ function TaskForm({
   editMode,
   mission,
   taskId,
-  taskDescription = '',
-  taskCompleted = false
+  taskCompleted = false,
+  taskDescription = ''
 }) {
   const [description, setDescription] = useState(taskDescription)
   const [isCompleted, setCompleted] = useState(taskCompleted)
@@ -129,14 +130,14 @@ function TaskForm({
           </FormGroup>
         )}
         <FormGroup>
-          <Button disabled={isError(errors)} primary>
+          <Button disabled={isError(errors)} variant="primary">
             {editMode ? 'Edit Task' : 'Create Task'}
           </Button>
         </FormGroup>
       </form>
       {editMode && (
         <FormGroup>
-          <Button secondary onClick={open}>
+          <Button variant="secondary" onClick={open}>
             Delete
           </Button>
         </FormGroup>
@@ -154,6 +155,19 @@ function TaskForm({
       )}
     </>
   )
+}
+
+TaskForm.defaultProps = {
+  taskCompleted: false,
+  taskDescription: ''
+}
+
+TaskForm.propTypes = {
+  editMode: PropTypes.bool.isRequired,
+  mission: PropTypes.string.isRequired,
+  taskId: PropTypes.string.isRequired,
+  taskCompleted: PropTypes.bool,
+  taskDescription: PropTypes.string
 }
 
 export { TaskForm }

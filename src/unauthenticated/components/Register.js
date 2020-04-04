@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 
 import {
   Button,
@@ -101,7 +102,7 @@ function Register({ setNewRegister }) {
           )}
         </FormGroup>
         <FormGroup>
-          <Button primary disabled={isError(errors)}>
+          <Button variant="primary" disabled={isError(errors)}>
             Register
           </Button>
         </FormGroup>
@@ -113,6 +114,10 @@ function Register({ setNewRegister }) {
       </ButtonGroup>
     </>
   )
+}
+
+Register.propTypes = {
+  setNewRegister: PropTypes.func.isRequired
 }
 
 export { Register }

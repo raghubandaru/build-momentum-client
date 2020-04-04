@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useRef } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 import { useDropzone } from 'react-dropzone'
 import ReactCrop from 'react-image-crop'
 import styled, { css } from 'styled-components'
@@ -136,8 +137,8 @@ function Upload({ close }) {
               `}
             ></canvas>
             <Button
-              fullwidth
-              secondary
+              width="100"
+              variant="secondary"
               onClick={handleClearToDefault}
               css={css`
                 margin-bottom: 1rem;
@@ -145,7 +146,7 @@ function Upload({ close }) {
             >
               Clear
             </Button>
-            <Button fullwidth primary onClick={handleAvatarUpload}>
+            <Button width="100" variant="primary" onClick={handleAvatarUpload}>
               Upload
             </Button>
           </div>
@@ -163,6 +164,10 @@ function Upload({ close }) {
       )}
     </>
   )
+}
+
+Upload.propTypes = {
+  close: PropTypes.func.isRequired
 }
 
 export { Upload }

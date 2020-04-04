@@ -88,16 +88,16 @@ function Login() {
           )}
         </FormGroup>
         <FormGroup>
-          <Button primary disabled={isError(errors)}>
+          <Button variant="primary" disabled={isError(errors)}>
             Login
           </Button>
         </FormGroup>
       </form>
       <ButtonGroup>
-        <Button as={Link} fullwidth teritiary to="/">
+        <Button as={Link} width="100" to="/">
           Forgot Password
         </Button>
-        <Button as={Link} fullwidth secondary to="/register">
+        <Button as={Link} width="100" variant="secondary" to="/register">
           Create Account
         </Button>
       </ButtonGroup>

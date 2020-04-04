@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import debounce from 'lodash.debounce'
+import PropTypes from 'prop-types'
 import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -54,7 +55,7 @@ function Layout({ children, className }) {
       <WrapperHead>
         <Container>
           <Nav>
-            <Button brand as={Link} to="/">
+            <Button variant="brand" as={Link} to="/">
               BM
             </Button>
             {user ? (
@@ -110,6 +111,11 @@ function Layout({ children, className }) {
       />
     </div>
   )
+}
+
+Layout.propTypes = {
+  children: PropTypes.element.isRequired,
+  className: PropTypes.string.isRequired
 }
 
 export default styled(Layout)`

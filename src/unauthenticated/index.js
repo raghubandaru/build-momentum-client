@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { StyledHeader, Main } from '../shared/components'
 import { Landing, Login, Register } from './components'
@@ -29,6 +30,10 @@ function UnAuthenticated({ setNewRegister }) {
       </Layout>
     </BrowserRouter>
   )
+}
+
+UnAuthenticated.propTypes = {
+  setNewRegister: PropTypes.func.isRequired
 }
 
 export default UnAuthenticated

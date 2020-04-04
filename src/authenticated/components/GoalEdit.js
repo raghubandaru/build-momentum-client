@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
 import { GoalForm } from './GoalForm'
@@ -28,6 +29,17 @@ function GoalEdit({ activeGoal, setActiveGoal }) {
       </Main>
     </>
   )
+}
+
+GoalEdit.propTypes = {
+  activeGoal: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    isActive: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+    review: PropTypes.string
+  }),
+  setActiveGoal: PropTypes.func.isRequired
 }
 
 export { GoalEdit }

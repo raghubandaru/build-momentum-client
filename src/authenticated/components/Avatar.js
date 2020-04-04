@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import DialogUpload from './DialogUpload'
@@ -24,12 +25,16 @@ function Avatar({ className }) {
         </div>
       )}
       <UserInfo />
-      <Button secondary onClick={() => setAvatarEdit(true)}>
+      <Button variant="secondary" onClick={() => setAvatarEdit(true)}>
         {user.avatar ? 'Change Avatar' : 'Add Avatar'}
       </Button>
       <DialogUpload isOpen={avatarEdit} close={close} />
     </div>
   )
+}
+
+Avatar.propTypes = {
+  className: PropTypes.string.isRequired
 }
 
 export default styled(Avatar)`

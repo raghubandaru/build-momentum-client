@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Dialog, DialogContent } from '@reach/dialog'
@@ -7,7 +8,7 @@ import '@reach/dialog/styles.css'
 
 import { Button } from '../elements'
 
-function DialogMenu({ isOpen, close, className, handleLogout }) {
+function DialogMenu({ className, close, isOpen, handleLogout }) {
   return (
     <Dialog className={className} isOpen={isOpen} onDismiss={close}>
       <Button className="close-button" onClick={close}>
@@ -43,6 +44,13 @@ function DialogMenu({ isOpen, close, className, handleLogout }) {
       </DialogContent>
     </Dialog>
   )
+}
+
+DialogMenu.propTypes = {
+  className: PropTypes.string.isRequired,
+  close: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  handleLogout: PropTypes.func.isRequired
 }
 
 const StyledDialogMenu = styled(DialogMenu)`

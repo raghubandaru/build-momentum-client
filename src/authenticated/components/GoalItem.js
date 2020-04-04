@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
@@ -7,14 +8,14 @@ import { Button } from '../../shared/elements'
 import { below } from '../../shared/utilities/Breakpoints'
 import GoalDetails from './GoalDetails'
 
-function GoalItem({ goal: { _id, name, review, isActive }, className }) {
+function GoalItem({ className, goal: { _id, isActive, name, review } }) {
   return (
     <div className={className}>
       <GoalDetails name={name} review={review} />
       <ActionGroup>
         {isActive && (
           <Button
-            rounded
+            variant="rounded"
             as={Link}
             to={{
               pathname: `/goals/active/edit`
@@ -23,12 +24,22 @@ function GoalItem({ goal: { _id, name, review, isActive }, className }) {
             Edit
           </Button>
         )}
-        <Button rounded as={Link} to={`/goals/${_id}`}>
+        <Button variant="rounded" as={Link} to={`/goals/${_id}`}>
           Tasks
         </Button>
       </ActionGroup>
     </div>
   )
+}
+
+GoalItem.propTypes = {
+  className: PropTypes.string.isRequired,
+  goal: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    isActive: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+    review: PropTypes.string
+  })
 }
 
 export default styled(GoalItem)`

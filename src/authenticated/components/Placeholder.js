@@ -1,15 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Button } from '../../shared/elements'
 
-function PlaceHolder({ className, text, action, pathname, mission }) {
+function PlaceHolder({ action, className, mission, pathname, text }) {
   return (
     <div className={className}>
       <p>{text}</p>
       <Button
-        primary
+        variant="primary"
         as={Link}
         to={{
           pathname,
@@ -22,6 +23,14 @@ function PlaceHolder({ className, text, action, pathname, mission }) {
       </Button>
     </div>
   )
+}
+
+PlaceHolder.propTypes = {
+  action: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  mission: PropTypes.string.isRequired,
+  pathname: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 export default styled(PlaceHolder)`

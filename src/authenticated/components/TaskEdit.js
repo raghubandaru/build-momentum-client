@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 
 import { StyledHeader, Main } from '../../shared/components'
@@ -50,6 +51,12 @@ function TaskEdit({ activeGoal }) {
       </Main>
     </>
   )
+}
+
+TaskEdit.propTypes = {
+  activeGoal: PropTypes.shape({
+    _id: PropTypes.string.isRequired
+  })
 }
 
 export { TaskEdit }

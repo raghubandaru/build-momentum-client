@@ -1,11 +1,11 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import { StyledHeader, Main } from '../../shared/components'
 import GoalItem from './GoalItem'
 import Placeholder from './Placeholder'
 import DialogUpload from './DialogUpload'
 
-function GoalActive({ activeGoal, className, newRegister, setNewRegister }) {
+function GoalActive({ activeGoal, newRegister, setNewRegister }) {
   const action = 'Get Started'
   const pathname = '/goals/create'
   const quote = 'Goal of the week'
@@ -29,6 +29,18 @@ function GoalActive({ activeGoal, className, newRegister, setNewRegister }) {
       <DialogUpload isOpen={newRegister} close={close} />
     </div>
   )
+}
+
+GoalActive.propTypes = {
+  activeGoal: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    isActive: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+    review: PropTypes.string
+  }),
+  newRegister: PropTypes.bool.isRequired,
+  setNewRegister: PropTypes.func.isRequired
 }
 
 export { GoalActive }

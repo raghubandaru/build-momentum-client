@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
 import AlertModal from './AlertModal'
@@ -143,7 +144,7 @@ function GoalForm({
           </FormGroup>
         )}
         <FormGroup>
-          <Button disabled={isError(errors)} primary>
+          <Button disabled={isError(errors)} variant="primary">
             {editMode ? 'Edit Goal' : 'Create Goal'}
           </Button>
         </FormGroup>
@@ -169,6 +170,20 @@ function GoalForm({
       )}
     </>
   )
+}
+
+GoalForm.defaultProps = {
+  goalName: '',
+  goalReview: '',
+  editMode: false
+}
+
+GoalForm.propTypes = {
+  goalId: PropTypes.string.isRequired,
+  goalName: PropTypes.string,
+  goalReview: PropTypes.string,
+  editMode: PropTypes.bool,
+  setActiveGoal: PropTypes.func.isRequired
 }
 
 export { GoalForm }

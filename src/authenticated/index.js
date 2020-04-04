@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
 import { getAccessToken } from '../shared/helpers/token'
@@ -82,6 +83,11 @@ function Authenticated({ newRegister, setNewRegister }) {
       </Layout>
     </BrowserRouter>
   )
+}
+
+Authenticated.propTypes = {
+  newRegister: PropTypes.bool.isRequired,
+  setNewRegister: PropTypes.func.isRequired
 }
 
 export default Authenticated

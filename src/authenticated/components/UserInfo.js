@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { useUser } from '../../shared/context/User'
@@ -12,6 +13,10 @@ function UserInfo({ className }) {
       <p>{user.email}</p>
     </div>
   )
+}
+
+UserInfo.propTypes = {
+  className: PropTypes.string.isRequired
 }
 
 export default styled(UserInfo)`

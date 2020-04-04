@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 function TaskStatus({ className, isActive, isCompleted }) {
@@ -9,6 +10,12 @@ function TaskStatus({ className, isActive, isCompleted }) {
       </span>
     </div>
   )
+}
+
+TaskStatus.propTypes = {
+  className: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  isCompleted: PropTypes.bool.isRequired
 }
 
 export default styled(TaskStatus)`
