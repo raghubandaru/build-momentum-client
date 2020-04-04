@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import debounce from 'lodash.debounce'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 
 import {
@@ -24,12 +24,10 @@ function Layout({ children, className }) {
   const close = () => setMenuOpen(false)
 
   const handleResize = e => {
-    console.log(e.target.innerWidth)
     setInnerWidth(e.target.innerWidth)
   }
 
   useEffect(() => {
-    console.log('Hello')
     window.addEventListener('resize', debounce(handleResize, 300))
 
     return () => window.removeEventListener('resize', handleResize)
@@ -114,8 +112,8 @@ function Layout({ children, className }) {
   )
 }
 
-export default styled(Layout)`
+export default withRouter(styled(Layout)`
   .activeClassName {
     font-weight: 700;
   }
-`
+`)

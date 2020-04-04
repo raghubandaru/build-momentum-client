@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-import Layout from '../../shared/layout'
 import { StyledHeader, Main } from '../../shared/components'
 import { getAccessToken } from '../../shared/helpers/token'
 
@@ -76,7 +75,7 @@ function Goal() {
   const quote = goal.review
 
   return (
-    <Layout>
+    <>
       <StyledHeader title={title} quote={quote} />
       <Main>
         <TaskList tasks={tasks} isActive={goal.isActive} mission={goal._id} />
@@ -87,7 +86,7 @@ function Goal() {
           handleNextPage={handleNextPage}
         />
       </Main>
-    </Layout>
+    </>
   )
 }
 

@@ -13,6 +13,7 @@ import {
   TaskAdd,
   TaskEdit
 } from './components'
+import Layout from '../shared/layout'
 
 function Authenticated({ newRegister, setNewRegister }) {
   const [activeGoal, setActiveGoal] = useState(null)
@@ -43,40 +44,42 @@ function Authenticated({ newRegister, setNewRegister }) {
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-        <Route path="/tasks/create">
-          <TaskAdd activeGoal={activeGoal} />
-        </Route>
-        <Route path="/tasks/edit/:taskId">
-          <TaskEdit activeGoal={activeGoal} />
-        </Route>
-        <Route exact path="/goals/create">
-          <GoalAdd setActiveGoal={setActiveGoal} />
-        </Route>
-        <Route exact path="/goals/active/edit">
-          <GoalEdit activeGoal={activeGoal} setActiveGoal={setActiveGoal} />
-        </Route>
-        <Route exact path="/goals/active">
-          <GoalActive
-            activeGoal={activeGoal}
-            setActiveGoal={setActiveGoal}
-            newRegister={newRegister}
-            setNewRegister={setNewRegister}
-          />
-        </Route>
-        <Route exact path="/goals/archive">
-          <GoalsArchive />
-        </Route>
-        <Route exact path="/goals/:goalId">
-          <Goal />
-        </Route>
-        <Route>
-          <Redirect to="/goals/active" />
-        </Route>
-      </Switch>
+      <Layout>
+        <Switch>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/tasks/create">
+            <TaskAdd activeGoal={activeGoal} />
+          </Route>
+          <Route path="/tasks/edit/:taskId">
+            <TaskEdit activeGoal={activeGoal} />
+          </Route>
+          <Route exact path="/goals/create">
+            <GoalAdd setActiveGoal={setActiveGoal} />
+          </Route>
+          <Route exact path="/goals/active/edit">
+            <GoalEdit activeGoal={activeGoal} setActiveGoal={setActiveGoal} />
+          </Route>
+          <Route exact path="/goals/active">
+            <GoalActive
+              activeGoal={activeGoal}
+              setActiveGoal={setActiveGoal}
+              newRegister={newRegister}
+              setNewRegister={setNewRegister}
+            />
+          </Route>
+          <Route exact path="/goals/archive">
+            <GoalsArchive />
+          </Route>
+          <Route exact path="/goals/:goalId">
+            <Goal />
+          </Route>
+          <Route>
+            <Redirect to="/goals/active" />
+          </Route>
+        </Switch>
+      </Layout>
     </BrowserRouter>
   )
 }

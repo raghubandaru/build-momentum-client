@@ -2,7 +2,6 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 
 import { GoalForm } from './GoalForm'
-import Layout from '../../shared/layout'
 import { StyledHeader, Main } from '../../shared/components'
 
 function GoalEdit({ activeGoal, setActiveGoal }) {
@@ -13,7 +12,7 @@ function GoalEdit({ activeGoal, setActiveGoal }) {
   const { _id: goalId, name, review } = activeGoal
 
   return (
-    <Layout>
+    <>
       <StyledHeader
         title="Edit Goal"
         quote="Hopefully review time or change details that fit your needs"
@@ -27,7 +26,7 @@ function GoalEdit({ activeGoal, setActiveGoal }) {
           editMode={true}
         />
       </Main>
-    </Layout>
+    </>
   )
 }
 

@@ -16,7 +16,7 @@ function GoalList({ className, goals }) {
   return (
     <div className={className}>
       {goals.map(goal => (
-        <GoalItem goal={goal} />
+        <GoalItem key={goal._id} goal={goal} />
       ))}
     </div>
   )

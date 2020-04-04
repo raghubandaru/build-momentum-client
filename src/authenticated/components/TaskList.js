@@ -27,7 +27,7 @@ function TaskList({ className, isActive, tasks, mission }) {
     <div className={className}>
       <TaskAction isActive={isActive} pathname={pathname} mission={mission} />
       {tasks.map(task => (
-        <TaskItem task={task} isActive={isActive} />
+        <TaskItem key={task._id} task={task} isActive={isActive} />
       ))}
     </div>
   )

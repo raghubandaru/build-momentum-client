@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import Layout from '../../shared/layout'
 import { StyledHeader, Main } from '../../shared/components'
 import { getAccessToken } from '../../shared/helpers/token'
 import GoalList from './GoalList'
@@ -50,7 +49,7 @@ function GoalsArchive() {
   const quote = 'Goals from the past'
 
   return (
-    <Layout>
+    <>
       <StyledHeader title={title} quote={quote} />
       <Main>
         <GoalList goals={goals} />
@@ -61,7 +60,7 @@ function GoalsArchive() {
           handleNextPage={handleNextPage}
         />
       </Main>
-    </Layout>
+    </>
   )
 }
 

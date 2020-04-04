@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-import Layout from '../../shared/layout'
 import { StyledHeader, Main } from '../../shared/components'
 import { getAccessToken } from '../../shared/helpers/token'
 import { TaskForm } from './TaskForm'
@@ -38,7 +37,7 @@ function TaskEdit({ activeGoal }) {
   }
 
   return (
-    <Layout>
+    <>
       <StyledHeader title="Edit Task" quote="Hopefully you made the progress" />
       <Main>
         <TaskForm
@@ -49,7 +48,7 @@ function TaskEdit({ activeGoal }) {
           taskCompleted={task.isCompleted}
         />
       </Main>
-    </Layout>
+    </>
   )
 }
 
