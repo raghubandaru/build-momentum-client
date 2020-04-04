@@ -2,16 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
+import ActionGroup from './ActionGroup'
 import { Button } from '../../shared/elements'
 import { below } from '../../shared/utilities/Breakpoints'
 import GoalDetails from './GoalDetails'
-import SideContent from './SideContent'
 
 function GoalItem({ goal: { _id, name, review, isActive }, className }) {
   return (
     <div className={className}>
       <GoalDetails name={name} review={review} />
-      <SideContent>
+      <ActionGroup>
         {isActive && (
           <Button
             rounded
@@ -26,7 +26,7 @@ function GoalItem({ goal: { _id, name, review, isActive }, className }) {
         <Button rounded as={Link} to={`/goals/${_id}`}>
           Tasks
         </Button>
-      </SideContent>
+      </ActionGroup>
     </div>
   )
 }
