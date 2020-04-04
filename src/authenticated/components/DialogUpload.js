@@ -11,12 +11,17 @@ import { Upload } from './Upload'
 
 function DialogUpload({ close, className, isOpen }) {
   return (
-    <Dialog className={className} isOpen={isOpen} onDismiss={close}>
+    <Dialog
+      aria-label="Image Upload"
+      className={className}
+      isOpen={isOpen}
+      onDismiss={close}
+    >
       <Button className="close-button" onClick={close}>
         <VisuallyHidden>Close</VisuallyHidden>
         <span aria-hidden>X</span>
       </Button>
-      <DialogContent>
+      <DialogContent aria-label="Upload Profile Picture">
         <Upload close={close} />
       </DialogContent>
     </Dialog>

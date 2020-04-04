@@ -10,12 +10,17 @@ import { Button } from '../elements'
 
 function DialogMenu({ className, close, isOpen, handleLogout }) {
   return (
-    <Dialog className={className} isOpen={isOpen} onDismiss={close}>
+    <Dialog
+      aria-label="Navigation"
+      className={className}
+      isOpen={isOpen}
+      onDismiss={close}
+    >
       <Button className="close-button" onClick={close}>
         <VisuallyHidden>Close</VisuallyHidden>
         <span aria-hidden>X</span>
       </Button>
-      <DialogContent>
+      <DialogContent aria-label="Menu">
         <Button
           as={NavLink}
           activeClassName="activeClassName"

@@ -114,7 +114,10 @@ function Layout({ children, className }) {
 }
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ]),
   className: PropTypes.string.isRequired
 }
 
