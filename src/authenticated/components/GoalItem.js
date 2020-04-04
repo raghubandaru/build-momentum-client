@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { Button } from '../../shared/elements'
+import { below } from '../../shared/utilities/Breakpoints'
 import GoalDetails from './GoalDetails'
 import SideContent from './SideContent'
 
@@ -41,4 +42,8 @@ export default styled(GoalItem)`
   :not(:last-child) {
     margin-bottom: 1rem;
   }
+
+  ${below.small`
+    flex-direction: column;
+  `}
 `

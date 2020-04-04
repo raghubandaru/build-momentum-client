@@ -4,7 +4,7 @@ import Layout from '../../shared/layout'
 import { StyledHeader, Main } from '../../shared/components'
 import GoalItem from './GoalItem'
 import Placeholder from './Placeholder'
-import DialogModal from './DialogModal'
+import DialogUpload from './DialogUpload'
 
 function GoalActive({ activeGoal, className, newRegister, setNewRegister }) {
   const action = 'Get Started'
@@ -29,7 +29,7 @@ function GoalActive({ activeGoal, className, newRegister, setNewRegister }) {
           )}
         </Main>
       </Layout>
-      <DialogModal isOpen={newRegister} close={close} />
+      <DialogUpload isOpen={newRegister} close={close} />
     </div>
   )
 }

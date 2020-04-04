@@ -8,7 +8,7 @@ import { below } from '../../shared/utilities/Breakpoints'
 import { Button } from '../../shared/elements'
 import { Upload } from './Upload'
 
-function DialogModal({ isOpen, close, className }) {
+function DialogUpload({ isOpen, close, className }) {
   return (
     <Dialog className={className} isOpen={isOpen} onDismiss={close}>
       <Button className="close-button" onClick={close}>
@@ -22,7 +22,7 @@ function DialogModal({ isOpen, close, className }) {
   )
 }
 
-export default styled(DialogModal)`
+export default styled(DialogUpload)`
   &[data-reach-dialog-content] {
     background: #f0f4f8;
     width: 60vw;

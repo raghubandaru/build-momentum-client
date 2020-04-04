@@ -1,4 +1,5 @@
 export * from './Container'
+export * from './DialogMenu'
 export * from './ErrorMessage'
 export * from './Header'
 export * from './Main'

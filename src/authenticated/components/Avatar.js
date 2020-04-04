@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import DialogModal from './DialogModal'
+import DialogUpload from './DialogUpload'
 import { useUser } from '../../shared/context/User'
 import { Button } from '../../shared/elements'
 import UserInfo from './UserInfo'
@@ -27,7 +27,7 @@ function Avatar({ className }) {
       <Button secondary onClick={() => setAvatarEdit(true)}>
         {user.avatar ? 'Change Avatar' : 'Add Avatar'}
       </Button>
-      <DialogModal isOpen={avatarEdit} close={close} />
+      <DialogUpload isOpen={avatarEdit} close={close} />
     </div>
   )
 }

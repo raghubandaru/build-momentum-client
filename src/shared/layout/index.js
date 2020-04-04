@@ -1,14 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import debounce from 'lodash.debounce'
+import { Link, NavLink } from 'react-router-dom'
+import styled from 'styled-components'
 
-import { Container, Nav, WrapperBody, WrapperHead } from '../components'
+import {
+  Container,
+  DialogMenu,
+  Nav,
+  WrapperBody,
+  WrapperHead
+} from '../components'
 import { getAccessToken, setAccessToken } from '../helpers/token'
 import { useUser } from '../context/User'
 import { Button } from '../elements'
 
-function Layout({ children }) {
+function Layout({ children, className }) {
+  const [isMenuOpen, setMenuOpen] = useState(false)
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+
   const { user, setUser } = useUser()
+
+  const close = () => setMenuOpen(false)
+
+  const handleResize = e => {
+    console.log(e.target.innerWidth)
+    setInnerWidth(e.target.innerWidth)
+  }
+
+  useEffect(() => {
+    console.log('Hello')
+    window.addEventListener('resize', debounce(handleResize, 300))
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const handleLogout = () => {
     const config = {
@@ -27,7 +52,7 @@ function Layout({ children }) {
   }
 
   return (
-    <div>
+    <div className={className}>
       <WrapperHead>
         <Container>
           <Nav>
@@ -35,21 +60,41 @@ function Layout({ children }) {
               BM
             </Button>
             {user ? (
-              <div>
-                <Button as={Link} to="/goals/active">
-                  Home
-                </Button>
-                <Button as={Link} to="/goals/archive">
-                  Archive
-                </Button>
-                <Button as={Link} to="/profile">
-                  Profile
-                </Button>
-                <Button onClick={handleLogout}>Logout</Button>
-              </div>
+              innerWidth > 400 ? (
+                <div>
+                  <Button
+                    as={NavLink}
+                    activeClassName="activeClassName"
+                    to="/goals/active"
+                  >
+                    Home
+                  </Button>
+                  <Button
+                    as={NavLink}
+                    activeClassName="activeClassName"
+                    to="/goals/archive"
+                  >
+                    Archive
+                  </Button>
+                  <Button
+                    as={NavLink}
+                    activeClassName="activeClassName"
+                    to="/profile"
+                  >
+                    Profile
+                  </Button>
+                  <Button onClick={handleLogout}>Logout</Button>
+                </div>
+              ) : (
+                <Button onClick={() => setMenuOpen(true)}>Menu</Button>
+              )
             ) : (
               <div>
-                <Button as={Link} to="/login">
+                <Button
+                  as={NavLink}
+                  activeClassName="activeClassName"
+                  to="/login"
+                >
                   Login
                 </Button>
               </div>
@@ -60,8 +105,17 @@ function Layout({ children }) {
       <WrapperBody>
         <Container>{children}</Container>
       </WrapperBody>
+      <DialogMenu
+        isOpen={isMenuOpen}
+        close={close}
+        handleLogout={handleLogout}
+      />
     </div>
   )
 }
 
-export default Layout
+export default styled(Layout)`
+  .activeClassName {
+    font-weight: 700;
+  }
+`
