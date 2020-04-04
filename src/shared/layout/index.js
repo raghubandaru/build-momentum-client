@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import debounce from 'lodash.debounce'
-import { Link, NavLink, withRouter } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import {
@@ -112,8 +112,8 @@ function Layout({ children, className }) {
   )
 }
 
-export default withRouter(styled(Layout)`
+export default styled(Layout)`
   .activeClassName {
     font-weight: 700;
   }
-`)
+`
