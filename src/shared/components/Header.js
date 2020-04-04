@@ -2,11 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-function Header({
-  className,
-  title = 'Build Momentum',
-  quote = 'Get up and running with a weekly active goal'
-}) {
+function Header({ className, title, quote }) {
   return (
     <header className={className}>
       <h1>{title}</h1>

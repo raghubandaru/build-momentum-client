@@ -15,13 +15,7 @@ import {
 import { getAccessToken } from '../../shared/helpers/token'
 import { isError, validateGoal } from '../../shared/utilities/validation'
 
-function GoalForm({
-  goalId,
-  goalName = '',
-  goalReview = '',
-  editMode = false,
-  setActiveGoal
-}) {
+function GoalForm({ goalId, goalName, goalReview, editMode, setActiveGoal }) {
   const [name, setName] = useState(goalName)
   const [review, setReview] = useState(goalReview)
   const [showDialog, setShowDialog] = useState(false)

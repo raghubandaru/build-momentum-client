@@ -30,7 +30,7 @@ TaskItem.propTypes = {
   task: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    isCompleted: PropTypes.string.isRequired
+    isCompleted: PropTypes.bool.isRequired
   })
 }
 

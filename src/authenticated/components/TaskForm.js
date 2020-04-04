@@ -19,8 +19,8 @@ function TaskForm({
   editMode,
   mission,
   taskId,
-  taskCompleted = false,
-  taskDescription = ''
+  taskCompleted,
+  taskDescription
 }) {
   const [description, setDescription] = useState(taskDescription)
   const [isCompleted, setCompleted] = useState(taskCompleted)
@@ -163,9 +163,9 @@ TaskForm.defaultProps = {
 }
 
 TaskForm.propTypes = {
-  editMode: PropTypes.bool.isRequired,
+  editMode: PropTypes.bool,
   mission: PropTypes.string.isRequired,
-  taskId: PropTypes.string.isRequired,
+  taskId: PropTypes.string,
   taskCompleted: PropTypes.bool,
   taskDescription: PropTypes.string
 }
