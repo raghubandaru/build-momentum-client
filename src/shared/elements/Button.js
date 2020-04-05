@@ -12,23 +12,28 @@ export const Button = styled.button`
   padding: 1rem;
   text-align: center;
   text-decoration: none;
-  width: ${props => props.width && `${props.width}%`};
+  width: ${(props) => props.width && `${props.width}%`};
 
-  ${props =>
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(118, 169, 250, 0.45);
+    outline: none;
+  }
+
+  ${(props) =>
     props.disabled &&
     css`
       cursor: not-allowed;
       opacity: 0.5;
     `}
 
-  ${props =>
+  ${(props) =>
     props.variant === 'brand' &&
     css`
       font-size: 2rem;
       font-weight: 600;
     `}
 
-  ${props =>
+  ${(props) =>
     props.variant === 'primary' &&
     css`
       background: #0a6c74;
@@ -38,7 +43,7 @@ export const Button = styled.button`
       text-transform: uppercase;
     `}
 
-  ${props =>
+  ${(props) =>
     props.variant === 'remove' &&
     css`
       background: #a61b1b;
@@ -48,7 +53,7 @@ export const Button = styled.button`
       text-transform: uppercase;
     `}
 
-  ${props =>
+  ${(props) =>
     props.variant === 'rounded' &&
     css`
       border-radius: 100px;
@@ -60,7 +65,7 @@ export const Button = styled.button`
       text-transform: uppercase;
     `}
 
-  ${props =>
+  ${(props) =>
     props.variant === 'secondary' &&
     css`
       border: 2px solid #0a6c74;
@@ -73,6 +78,6 @@ Button.propTypes = {
     'primary',
     'remove',
     'rounded',
-    'secondary'
-  ])
+    'secondary',
+  ]),
 }

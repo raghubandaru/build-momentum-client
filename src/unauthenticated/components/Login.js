@@ -21,6 +21,7 @@ function Login() {
     email: false,
     password: false
   })
+  const [error, setError] = useState(null)
 
   const { setUser } = useUser()
 
@@ -39,6 +40,11 @@ function Login() {
 
   const handleLogin = e => {
     e.preventDefault()
+    // Check whether errors exist in form
+    if (isError(errors)) {
+      return
+    }
+
     const url = `${process.env.REACT_APP_API_DOMAIN}/users/login`
     const data = details
     const config = {
@@ -48,10 +54,15 @@ function Login() {
       withCredentials: true
     }
 
-    axios(config).then(({ data: { user, accessToken } }) => {
-      setAccessToken(accessToken)
-      setUser(user)
-    })
+    setError(null)
+    axios(config)
+      .then(({ data: { user, accessToken } }) => {
+        setAccessToken(accessToken)
+        setUser(user)
+      })
+      .catch(error => {
+        setError(error.response.data.error)
+      })
   }
 
   const errors = validateLogin(details)
@@ -59,6 +70,11 @@ function Login() {
   return (
     <>
       <form onSubmit={handleLogin}>
+        {error && (
+          <FormGroup>
+            <ErrorMessage error={error} />
+          </FormGroup>
+        )}
         <FormGroup>
           <Label htmlFor="email">Email</Label>
           <Input

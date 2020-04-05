@@ -22,6 +22,7 @@ function Register({ setNewRegister }) {
     email: false,
     password: false
   })
+  const [error, setError] = useState(null)
 
   const { setUser } = useUser()
 
@@ -40,6 +41,11 @@ function Register({ setNewRegister }) {
 
   const handleSignUp = e => {
     e.preventDefault()
+    // Check whether errors exist in form
+    if (isError(errors)) {
+      return
+    }
+
     const url = `${process.env.REACT_APP_API_DOMAIN}/users`
     const data = details
     const config = {
@@ -49,11 +55,16 @@ function Register({ setNewRegister }) {
       withCredentials: true
     }
 
-    axios(config).then(({ data: { user, accessToken } }) => {
-      setAccessToken(accessToken)
-      setNewRegister(true)
-      setUser(user)
-    })
+    setError(null)
+    axios(config)
+      .then(({ data: { user, accessToken } }) => {
+        setAccessToken(accessToken)
+        setNewRegister(true)
+        setUser(user)
+      })
+      .catch(error => {
+        setError(error.response.data.error)
+      })
   }
 
   const errors = validateRegister(details)
@@ -61,6 +72,11 @@ function Register({ setNewRegister }) {
   return (
     <>
       <form onSubmit={handleSignUp}>
+        {error && (
+          <FormGroup>
+            <ErrorMessage error={error} />
+          </FormGroup>
+        )}
         <FormGroup>
           <Label htmlFor="name">Name</Label>
           <Input

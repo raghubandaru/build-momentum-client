@@ -15,11 +15,7 @@ const validateLogin = inputs => ({
     : !isValidEmail(inputs.email)
     ? 'Email is invalid'
     : null,
-  password: !isRequired(inputs.password)
-    ? 'Password is required'
-    : !isLongerthan(3, inputs.password)
-    ? 'Password should be longer than 3 characters'
-    : null
+  password: !isRequired(inputs.password) ? 'Password is required' : null
 })
 
 const validateRegister = inputs => ({

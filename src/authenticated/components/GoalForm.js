@@ -121,6 +121,7 @@ function GoalForm({ goalId, goalName, goalReview, editMode, setActiveGoal }) {
             value={name}
             onChange={handleChange}
             onBlur={handleBlur}
+            autoFocus
           />
           {errors.name && touched.name && <ErrorMessage error={errors.name} />}
         </FormGroup>

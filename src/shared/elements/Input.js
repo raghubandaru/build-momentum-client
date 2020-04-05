@@ -8,4 +8,9 @@ export const Input = styled.input`
   font-family: inherit;
   border: none;
   line-height: inherit;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(118, 169, 250, 0.45);
+    outline: none;
+  }
 `
