@@ -157,7 +157,7 @@ function Upload({ close }) {
             <input {...getInputProps()} multiple={false} accept="image/*" />
             {isDragActive ? <p>Drop the image here</p> : <p>Upload Image</p>}
           </DragnDrop>
-          <Button secondary onClick={handleSkip}>
+          <Button variant="secondary" onClick={handleSkip}>
             Skip
           </Button>
         </UploadContainer>

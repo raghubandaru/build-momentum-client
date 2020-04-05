@@ -146,7 +146,7 @@ function GoalForm({ goalId, goalName, goalReview, editMode, setActiveGoal }) {
       </form>
       {editMode && (
         <FormGroup>
-          <Button secondary onClick={open}>
+          <Button variant="secondary" onClick={open}>
             Delete
           </Button>
         </FormGroup>
