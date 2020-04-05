@@ -1,5 +1,6 @@
 export * from './Button'
 export * from './ButtonGroup'
+export * from './Checkbox'
 export * from './FormGroup'
 export * from './Input'
 export * from './Label'

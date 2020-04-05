@@ -8,7 +8,7 @@ import '@reach/dialog/styles.css'
 
 import { Button } from '../elements'
 
-function DialogMenu({ className, close, isOpen, handleLogout }) {
+function DialogMenu({ className, close, handleLogout, isOpen }) {
   return (
     <Dialog
       aria-label="Navigation"
@@ -54,8 +54,8 @@ function DialogMenu({ className, close, isOpen, handleLogout }) {
 DialogMenu.propTypes = {
   className: PropTypes.string.isRequired,
   close: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  handleLogout: PropTypes.func.isRequired
+  handleLogout: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired
 }
 
 const StyledDialogMenu = styled(DialogMenu)`

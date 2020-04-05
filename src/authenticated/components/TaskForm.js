@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
+import { css } from 'styled-components'
+import 'styled-components/macro'
 
 import AlertModal from './AlertModal'
 import { ErrorMessage } from '../../shared/components'
 import {
   Button,
+  Checkbox,
   FormGroup,
   Label,
-  Input,
   Textarea
 } from '../../shared/elements'
 import { getAccessToken } from '../../shared/helpers/token'
@@ -38,6 +40,8 @@ function TaskForm({
 
     setTouched({ ...touched, [fieldName]: true })
   }
+
+  const handleCheckboxChange = e => setCompleted(e.target.checked)
 
   const handleTaskCreate = e => {
     e.preventDefault()
@@ -118,15 +122,17 @@ function TaskForm({
           )}
         </FormGroup>
         {editMode && (
-          <FormGroup checked={true}>
-            <Input
-              type="checkbox"
-              name="isCompleted"
-              id="isCompleted"
-              checked={isCompleted}
-              onChange={e => setCompleted(e.target.checked)}
-            />
-            <Label htmlFor="isCompleted">Completed</Label>
+          <FormGroup>
+            <Label>
+              <Checkbox checked={isCompleted} onChange={handleCheckboxChange} />
+              <span
+                css={css`
+                  margin-left: 0.5rem;
+                `}
+              >
+                Completed
+              </span>
+            </Label>
           </FormGroup>
         )}
         <FormGroup>

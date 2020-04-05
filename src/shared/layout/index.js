@@ -15,6 +15,7 @@ import {
 import { getAccessToken, setAccessToken } from '../helpers/token'
 import { useUser } from '../context/User'
 import { Button } from '../elements'
+import { below } from '../utilities/Breakpoints'
 
 function Layout({ children, className }) {
   const [isMenuOpen, setMenuOpen] = useState(false)
@@ -60,7 +61,7 @@ function Layout({ children, className }) {
             </Button>
             {user ? (
               innerWidth > 400 ? (
-                <div>
+                <div className="pullright">
                   <Button
                     as={NavLink}
                     activeClassName="activeClassName"
@@ -123,6 +124,16 @@ Layout.propTypes = {
 
 export default styled(Layout)`
   .activeClassName {
-    font-weight: 700;
+    font-weight: 600;
+  }
+
+  .pullright {
+    & > * {
+      margin-left: 2rem;
+
+      ${below.med`
+        margin-left: 1rem;
+      `}
+    }
   }
 `
