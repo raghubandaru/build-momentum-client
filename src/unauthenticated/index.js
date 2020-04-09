@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { StyledHeader, Main } from '../shared/components'
-import { Landing, Login, Register } from './components'
+import { ForgotPassword, Login, ResetPassword, Register } from './components'
 import Layout from '../shared/layout'
 
 function UnAuthenticated({ setNewRegister }) {
@@ -13,8 +13,11 @@ function UnAuthenticated({ setNewRegister }) {
         <StyledHeader />
         <Main>
           <Switch>
-            <Route exact path="/">
-              <Landing />
+            <Route path="/reset_password/:userId/:resetToken">
+              <ResetPassword />
+            </Route>
+            <Route path="/forgot_password">
+              <ForgotPassword />
             </Route>
             <Route path="/login">
               <Login />
@@ -23,7 +26,7 @@ function UnAuthenticated({ setNewRegister }) {
               <Register setNewRegister={setNewRegister} />
             </Route>
             <Route>
-              <Redirect to="/" />
+              <Redirect to="/login" />
             </Route>
           </Switch>
         </Main>
