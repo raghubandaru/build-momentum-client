@@ -63,7 +63,7 @@ function GoalForm({ goalId, goalName, goalReview, editMode, setActiveGoal }) {
         setActiveGoal(goal)
         history.push('/goals/active')
       })
-      .catch(error => console.log(error))
+      .catch(() => {})
   }
 
   const handleGoalEdit = e => {
@@ -85,7 +85,7 @@ function GoalForm({ goalId, goalName, goalReview, editMode, setActiveGoal }) {
         setActiveGoal(goal)
         history.push('/goals/active')
       })
-      .catch(error => console.log(error))
+      .catch(() => {})
   }
 
   const handleGoalDelete = () => {
@@ -104,7 +104,7 @@ function GoalForm({ goalId, goalName, goalReview, editMode, setActiveGoal }) {
           setActiveGoal(null)
         }
       })
-      .catch(error => console.log(error))
+      .catch(() => {})
   }
 
   const errors = validateGoal(name)

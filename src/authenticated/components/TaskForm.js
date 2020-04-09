@@ -59,7 +59,7 @@ function TaskForm({
 
     axios(config)
       .then(() => history.push(`/goals/${mission}`))
-      .catch(error => console.log(error))
+      .catch(() => {})
   }
 
   const handleTaskEdit = e => {
@@ -78,7 +78,7 @@ function TaskForm({
 
     axios(config)
       .then(() => history.push(`/goals/${mission}`))
-      .catch(error => console.log(error))
+      .catch(() => {})
   }
 
   const handleTaskDelete = () => {
@@ -97,7 +97,7 @@ function TaskForm({
           history.push(`/goals/${mission}`)
         }
       })
-      .catch(error => console.log(error))
+      .catch(() => {})
   }
 
   const errors = validateTask(description)

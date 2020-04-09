@@ -39,13 +39,8 @@ function ForgotPassword() {
 
     setError(null)
     axios(config)
-      .then(({ data: { message } }) => {
-        console.log(message)
-        setMessage(message)
-      })
-      .catch(error => {
-        setError(error.response.data.error)
-      })
+      .then(({ data: { message } }) => setMessage(message))
+      .catch(error => setError(error.response.data.error))
   }
 
   const errors = validateForgotPassword(email)
