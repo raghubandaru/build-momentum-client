@@ -1,15 +1,17 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
+
 import App from './App'
 import Global from './Global'
 import * as serviceWorker from './serviceWorker'
+import { Loading } from './shared/components'
 import { UserProvider } from './shared/context/User'
 
 ReactDOM.render(
   <React.StrictMode>
     <Global />
     <UserProvider>
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<Loading variant="fullheight" />}>
         <App />
       </Suspense>
     </UserProvider>

@@ -3,6 +3,7 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
+import { Loading } from '../shared/components'
 import { getAccessToken } from '../shared/helpers/token'
 import {
   GoalsArchive,
@@ -40,7 +41,7 @@ function Authenticated({ newRegister, setNewRegister }) {
   }, [])
 
   if (isLoading) {
-    return 'Loading...'
+    return <Loading variant="fullheight" />
   }
 
   return (

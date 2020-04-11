@@ -17,6 +17,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^10.2.2",
+    "react-epic-spinners": "^0.4.1",
     "react-image-crop": "^8.6.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",

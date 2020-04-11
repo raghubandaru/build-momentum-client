@@ -3,7 +3,7 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 
-import { StyledHeader, Main } from '../../shared/components'
+import { StyledHeader, Loading, Main } from '../../shared/components'
 import { getAccessToken } from '../../shared/helpers/token'
 import { TaskForm } from './TaskForm'
 
@@ -34,7 +34,7 @@ function TaskEdit({ activeGoal }) {
   }, [taskId, mission])
 
   if (isLoading) {
-    return 'Loading...'
+    return <Loading variant="insidelayout" />
   }
 
   return (

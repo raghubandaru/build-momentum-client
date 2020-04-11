@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import { StyledHeader, Main } from '../../shared/components'
+import { StyledHeader, Loading, Main } from '../../shared/components'
 import { getAccessToken } from '../../shared/helpers/token'
 import GoalList from './GoalList'
 import Pagination from './Pagination'
@@ -42,7 +42,7 @@ function GoalsArchive() {
   }
 
   if (isLoading) {
-    return 'Loading...'
+    return <Loading variant="insidelayout" />
   }
 
   const title = 'Archived Goals'

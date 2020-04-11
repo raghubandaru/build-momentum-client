@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-import { StyledHeader, Main } from '../../shared/components'
+import { StyledHeader, Loading, Main } from '../../shared/components'
 import { getAccessToken } from '../../shared/helpers/token'
 
 import Pagination from './Pagination'
@@ -64,11 +64,11 @@ function Goal() {
   }
 
   if (isLoading) {
-    return 'Loading...'
+    return <Loading variant="insidelayout" />
   }
 
   if (goal === null || tasks === null) {
-    return 'Loading...'
+    return <Loading variant="insidelayout" />
   }
 
   const title = goal.name
