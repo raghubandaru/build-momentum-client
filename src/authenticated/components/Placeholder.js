@@ -28,7 +28,7 @@ function PlaceHolder({ action, className, mission, pathname, text }) {
 PlaceHolder.propTypes = {
   action: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
-  mission: PropTypes.string.isRequired,
+  mission: PropTypes.string,
   pathname: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 }

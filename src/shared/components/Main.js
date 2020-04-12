@@ -9,10 +9,10 @@ export const Main = styled.main`
   background: #f0f4f8;
 
   ${below.med`
-    padding: 3rem;
+    padding: 4rem 3rem;
   `}
 
   ${below.small`
-    padding: 3rem 1.5rem;
+    padding: 4rem 1rem;
   `}
 `
