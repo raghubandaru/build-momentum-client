@@ -30,6 +30,10 @@ const Global = createGlobalStyle`
   p {
     font-size: 1.6rem;
   }
+  ::selection {
+    background-color: #0A6C74;
+    color: #F0F4F8;
+  }
 `
 
 export default Global
