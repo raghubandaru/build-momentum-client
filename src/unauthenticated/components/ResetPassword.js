@@ -81,7 +81,7 @@ function ResetPassword() {
   }
 
   if (isLoading) {
-    return <Loading height={230} />
+    return <Loading size={50} height={230} />
   } else if (successMessage || errorMessage) {
     return (
       <div

@@ -41,10 +41,6 @@ function GoalsArchive() {
     setGoalPage(goalPage => goalPage + 1)
   }
 
-  if (isLoading) {
-    return <Loading variant="insidelayout" />
-  }
-
   const title = 'Archived Goals'
   const quote = 'Goals from the past'
 
@@ -52,13 +48,19 @@ function GoalsArchive() {
     <>
       <StyledHeader title={title} quote={quote} />
       <Main>
-        <GoalList goals={goals} />
-        <Pagination
-          hasPrevious={hasPrevious}
-          hasNext={hasNext}
-          handlePreviousPage={handlePreviousPage}
-          handleNextPage={handleNextPage}
-        />
+        {isLoading ? (
+          <Loading size={50} height={230} />
+        ) : (
+          <>
+            <GoalList goals={goals} />
+            <Pagination
+              hasPrevious={hasPrevious}
+              hasNext={hasNext}
+              handlePreviousPage={handlePreviousPage}
+              handleNextPage={handleNextPage}
+            />
+          </>
+        )}
       </Main>
     </>
   )

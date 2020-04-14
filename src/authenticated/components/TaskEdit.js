@@ -33,21 +33,25 @@ function TaskEdit({ activeGoal }) {
       })
   }, [taskId, mission])
 
-  if (isLoading) {
-    return <Loading variant="insidelayout" />
-  }
+  // if (isLoading) {
+  //   return <Loading variant="insidelayout" />
+  // }
 
   return (
     <>
       <StyledHeader title="Edit Task" quote="Hopefully you made the progress" />
       <Main>
-        <TaskForm
-          editMode={true}
-          mission={mission}
-          taskId={task._id}
-          taskDescription={task.description}
-          taskCompleted={task.isCompleted}
-        />
+        {isLoading ? (
+          <Loading size={50} height={230} />
+        ) : (
+          <TaskForm
+            editMode={true}
+            mission={mission}
+            taskId={task._id}
+            taskDescription={task.description}
+            taskCompleted={task.isCompleted}
+          />
+        )}
       </Main>
     </>
   )

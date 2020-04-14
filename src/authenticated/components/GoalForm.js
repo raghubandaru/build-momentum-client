@@ -174,7 +174,7 @@ GoalForm.defaultProps = {
 }
 
 GoalForm.propTypes = {
-  goalId: PropTypes.string.isRequired,
+  goalId: PropTypes.string,
   goalName: PropTypes.string,
   goalReview: PropTypes.string,
   editMode: PropTypes.bool,

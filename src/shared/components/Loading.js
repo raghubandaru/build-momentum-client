@@ -4,10 +4,10 @@ import styled, { css } from 'styled-components'
 
 import { SpringSpinner } from 'react-epic-spinners'
 
-function Loading({ className }) {
+function Loading({ className, size }) {
   return (
     <div className={className}>
-      <SpringSpinner size={100} color="#0A6C74" />
+      <SpringSpinner size={size} color="#0A6C74" />
     </div>
   )
 }
@@ -36,7 +36,12 @@ const StyledLoading = styled(Loading)`
 Loading.propTypes = {
   className: PropTypes.string.isRequired,
   height: PropTypes.number,
+  size: PropTypes.number,
   variant: PropTypes.oneOf(['fullheight', 'insidelayout'])
+}
+
+Loading.defaultProps = {
+  size: 100
 }
 
 export { StyledLoading as Loading }
