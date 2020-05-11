@@ -1,7 +1,13 @@
-import React, { useState, useEffect, createContext, useContext } from 'react'
-import axios from 'axios'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 import PropTypes from 'prop-types'
 
+import { fetchAccessToken, fetchUser } from '../api'
 import { Loading } from '../components'
 import { setAccessToken } from '../helpers/token'
 
@@ -11,31 +17,26 @@ function UserProvider({ children }) {
   const [user, setUser] = useState(null)
   const [isLoading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const config = {
-      method: 'POST',
-      url: `${process.env.REACT_APP_API_DOMAIN}/users/refresh_token`,
-      withCredentials: true
-    }
+  const fetchAccessTokenAndUser = useCallback(async () => {
+    try {
+      const {
+        data: { accessToken }
+      } = await fetchAccessToken()
+      const {
+        data: { user }
+      } = await fetchUser(accessToken)
 
-    axios(config)
-      .then(({ data: { accessToken } }) => {
-        const config = {
-          url: `${process.env.REACT_APP_API_DOMAIN}/users/me`,
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        }
-        axios(config).then(({ data: { user } }) => {
-          setAccessToken(accessToken)
-          setUser(user)
-          setLoading(false)
-        })
-      })
-      .catch(error => {
-        setLoading(false)
-      })
+      setAccessToken(accessToken)
+      setUser(user)
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+    }
   }, [])
+
+  useEffect(() => {
+    fetchAccessTokenAndUser()
+  }, [fetchAccessTokenAndUser])
 
   if (isLoading) {
     return <Loading variant="fullheight" />
@@ -54,4 +55,4 @@ UserProvider.propTypes = {
   children: PropTypes.element
 }
 
-export { UserProvider, useUser }
+export { UserProvider, UserContext, useUser }
