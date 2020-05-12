@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-import { StyledHeader, Loading, Main } from '../../shared/components'
-import { getAccessToken } from '../../shared/helpers/token'
+import { StyledHeader, Loading, Main } from '../../../shared/components'
+import { getAccessToken } from '../../../shared/helpers/token'
 
-import Pagination from './Pagination'
-import TaskList from './TaskList'
+import Pagination from '../Pagination'
+import TaskList from '../Tasks/TaskList'
 
 function Goal() {
   const [isLoading, setLoading] = useState(true)

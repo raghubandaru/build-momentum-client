@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import Placeholder from './Placeholder'
+import Placeholder from '../Placeholder'
 import GoalItem from './GoalItem'
 
 function GoalList({ className, goals }) {

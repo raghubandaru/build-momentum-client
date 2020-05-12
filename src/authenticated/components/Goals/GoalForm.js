@@ -3,17 +3,17 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
-import AlertModal from './AlertModal'
-import { ErrorMessage } from '../../shared/components'
+import AlertModal from '../AlertModal'
+import { ErrorMessage } from '../../../shared/components'
 import {
   Button,
   FormGroup,
   Input,
   Label,
   Textarea
-} from '../../shared/elements'
-import { getAccessToken } from '../../shared/helpers/token'
-import { isError, validateGoal } from '../../shared/utilities/validation'
+} from '../../../shared/elements'
+import { getAccessToken } from '../../../shared/helpers/token'
+import { isError, validateGoal } from '../../../shared/utilities/validation'
 
 function GoalForm({ goalId, goalName, goalReview, editMode, setActiveGoal }) {
   const [name, setName] = useState(goalName)

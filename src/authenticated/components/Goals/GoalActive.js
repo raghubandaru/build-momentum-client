@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyledHeader, Main } from '../../shared/components'
+
+import { StyledHeader, Main } from '../../../shared/components'
 import GoalItem from './GoalItem'
-import Placeholder from './Placeholder'
-import DialogUpload from './DialogUpload'
+import Placeholder from '../Placeholder'
+import DialogUpload from '../DialogUpload'
 
 function GoalActive({ activeGoal, newRegister, setNewRegister }) {
   const action = 'Get Started'

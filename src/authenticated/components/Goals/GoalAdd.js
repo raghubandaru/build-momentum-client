@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { GoalForm } from './GoalForm'
-import { StyledHeader, Main } from '../../shared/components'
+import { StyledHeader, Main } from '../../../shared/components'
 
 function GoalAdd({ setActiveGoal }) {
   return (

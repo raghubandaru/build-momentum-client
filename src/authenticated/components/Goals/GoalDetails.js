@@ -14,11 +14,9 @@ function GoalDetails({ className, name, review }) {
 const StyledGoalDetails = styled(GoalDetails)`
   display: flex;
   flex-direction: column;
-
   h2 {
     margin-bottom: 1rem;
   }
-
   p {
     font-style: italic;
   }

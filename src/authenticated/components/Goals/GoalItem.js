@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import ActionGroup from './ActionGroup'
-import { Button } from '../../shared/elements'
-import { below } from '../../shared/utilities/Breakpoints'
+import ActionGroup from '../ActionGroup'
+import { Button } from '../../../shared/elements'
+import { below } from '../../../shared/utilities/Breakpoints'
 import GoalDetails from './GoalDetails'
 
 function GoalItem({ className, goal: { _id, isActive, name, review } }) {

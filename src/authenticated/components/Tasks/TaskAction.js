@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Button } from '../../shared/elements'
+import { Button } from '../../../shared/elements'
 
 function TaskAction({ className, isActive, pathname }) {
   if (!isActive) {

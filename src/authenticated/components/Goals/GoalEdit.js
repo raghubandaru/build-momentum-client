@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 
 import { GoalForm } from './GoalForm'
-import { StyledHeader, Main } from '../../shared/components'
+import { StyledHeader, Main } from '../../../shared/components'
 
 function GoalEdit({ activeGoal, setActiveGoal }) {
   if (!activeGoal) {

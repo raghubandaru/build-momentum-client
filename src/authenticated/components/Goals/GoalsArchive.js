@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import { StyledHeader, Loading, Main } from '../../shared/components'
-import { getAccessToken } from '../../shared/helpers/token'
+import { StyledHeader, Loading, Main } from '../../../shared/components'
+import { getAccessToken } from '../../../shared/helpers/token'
 import GoalList from './GoalList'
-import Pagination from './Pagination'
+import Pagination from '../Pagination'
 
 function GoalsArchive() {
   const [isLoading, setLoading] = useState(true)

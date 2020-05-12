@@ -5,17 +5,17 @@ import { useHistory } from 'react-router-dom'
 import { css } from 'styled-components'
 import 'styled-components/macro'
 
-import AlertModal from './AlertModal'
-import { ErrorMessage } from '../../shared/components'
+import AlertModal from '../AlertModal'
+import { ErrorMessage } from '../../../shared/components'
 import {
   Button,
   Checkbox,
   FormGroup,
   Label,
   Textarea
-} from '../../shared/elements'
-import { getAccessToken } from '../../shared/helpers/token'
-import { isError, validateTask } from '../../shared/utilities/validation'
+} from '../../../shared/elements'
+import { getAccessToken } from '../../../shared/helpers/token'
+import { isError, validateTask } from '../../../shared/utilities/validation'
 
 function TaskForm({
   editMode,

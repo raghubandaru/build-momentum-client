@@ -3,8 +3,8 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 
-import { StyledHeader, Loading, Main } from '../../shared/components'
-import { getAccessToken } from '../../shared/helpers/token'
+import { StyledHeader, Loading, Main } from '../../../shared/components'
+import { getAccessToken } from '../../../shared/helpers/token'
 import { TaskForm } from './TaskForm'
 
 function TaskEdit({ activeGoal }) {
