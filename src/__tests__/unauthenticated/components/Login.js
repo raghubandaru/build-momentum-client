@@ -1,11 +1,12 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, cleanup } from '@testing-library/react'
 import { axe } from 'jest-axe'
 import { BrowserRouter } from 'react-router-dom'
 
 import { UserContext } from '../../../shared/context/User'
-import { Login } from '../../../unauthenticated/components'
+import { dirty, enterValidDetails } from '../../../shared/utilities/tests'
 import { loginUser as mockLoginUser } from '../../../unauthenticated/api'
+import { Login } from '../../../unauthenticated/components'
 
 jest.mock('../../../unauthenticated/api')
 
@@ -57,6 +58,7 @@ beforeEach(() => {
 
 afterEach(() => {
   jest.clearAllMocks()
+  cleanup()
 })
 
 test('the form is accesible', async () => {
@@ -95,12 +97,3 @@ test('should submit form successfully with valid data', async () => {
   })
   expect(mockLoginUser).toHaveBeenCalledTimes(1)
 })
-
-const dirty = input => {
-  fireEvent.click(input)
-  fireEvent.blur(input)
-}
-
-const enterValidDetails = (input, value) => {
-  fireEvent.change(input, { target: { value } })
-}
